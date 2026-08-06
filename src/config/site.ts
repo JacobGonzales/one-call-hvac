@@ -1,0 +1,12 @@
+export const ASSET_BASE = "/onecall-heating-and-air";
+export const HOME_ROUTE = "/";
+export const SERVICES_ROUTE = "/services";
+export const ABOUT_ROUTE = "/about";
+export const SOCIAL_MEDIA_ROUTE = "/about/social-media";
+export const LOCATION_ROUTE = "/location";
+export const EMERGENCY_ROUTE = "/emergency";
+export const CONTACT_ROUTE = "/contact";
+export const PHONE = "(801) 864-2045";
+export const PHONE_NUMBER = PHONE;
+export const PHONE_HREF = "tel:+18018642045";
+export const EMAIL = "brownzowl4626@gmail.com";

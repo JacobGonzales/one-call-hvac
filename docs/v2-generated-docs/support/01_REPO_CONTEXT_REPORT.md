@@ -12,7 +12,7 @@ No application environment-variable contract exists. Non-interactive publication
 
 ## Deployment Correction
 
-The repository has been migrated from the incorrect Vite/static-assets configuration to the intended Next.js application model. `next build` creates `.next/`; `opennextjs-cloudflare build` produces `.open-next/worker.js` and `.open-next/assets`; Wrangler uses `nodejs_compat`, an asset binding, a self-service binding, and the `utahonecall.com` custom-domain route. The previously observed live domain still served an old `Hello world` Worker, so publication and live verification remain pending Cloudflare authentication or the connected Git deployment pipeline.
+The repository has been migrated from the incorrect Vite/static-assets configuration to the intended Next.js application model. `npm run build` now creates `.next/` and packages `.open-next/worker.js` plus `.open-next/assets`, matching Cloudflare's configured build/deploy commands. Wrangler uses `nodejs_compat`, an asset binding, a self-service binding, and the `utahonecall.com` custom-domain route. The previously observed live domain still served an old `Hello world` Worker, so publication and live verification remain pending Cloudflare authentication or the connected Git deployment pipeline.
 
 ## Validation And Risks
 

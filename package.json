@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 3000",
-    "build": "next build",
+    "build": "opennextjs-cloudflare build",
+    "next:build": "next build",
     "cf:build": "opennextjs-cloudflare build",
     "cf:deploy": "opennextjs-cloudflare deploy",
-    "deploy": "npm run cf:build && npm run cf:deploy",
+    "deploy": "npm run build && npm run cf:deploy",
     "lint": "eslint .",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start --hostname 0.0.0.0 --port 3000",

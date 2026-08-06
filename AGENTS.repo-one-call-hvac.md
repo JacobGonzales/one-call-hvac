@@ -45,7 +45,8 @@ Keep `src/app/`, route metadata, `src/config/site.ts`, and this inventory synchr
 - `npm run dev`: start Next.js on `localhost:3000`
 - `npm run typecheck`: run strict TypeScript checks
 - `npm run lint`: run ESLint
-- `npm run build`: create the Next.js production build
+- `npm run next:build`: create the Next.js-only production build in `.next/`
+- `npm run build`: create the Next.js build and package it for Cloudflare in `.open-next/`
 - `npm run cf:build`: package the Next.js build with OpenNext
 - `npm run deploy`: package and deploy the OpenNext Worker
 - `npm run preview`: package and preview the OpenNext Worker

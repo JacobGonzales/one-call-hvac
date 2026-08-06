@@ -34,7 +34,7 @@ npm run lint
 npm run build
 ```
 
-Next.js writes its production build to `.next/`. The Cloudflare build then packages it into `.open-next/`.
+`npm run build` runs the Next.js production build and packages it into `.open-next/` for Cloudflare. Use `npm run next:build` when only the local `.next/` output is needed.
 
 ## Project Structure
 
@@ -65,7 +65,7 @@ maps the Worker to `utahonecall.com`.
 npm run deploy
 ```
 
-For Cloudflare Builds, use `npm run cf:build` as the build command and
-`npm run cf:deploy` as the deploy command.
+For Cloudflare Builds, use `npm run build` as the build command and
+`npx wrangler deploy` as the deploy command.
 
 The contact form posts to Formspree, and page styles currently load Archivo Black and Inter from Google Fonts.

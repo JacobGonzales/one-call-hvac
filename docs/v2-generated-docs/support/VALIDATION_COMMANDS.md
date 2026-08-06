@@ -7,7 +7,8 @@
 | `npm run typecheck` | Strict TypeScript checks | May read generated Next types | After source/config changes |
 | `npm run lint` | Next.js Core Web Vitals and TypeScript ESLint checks | Read-only normally | After source changes |
 | `npm test` | Focused Vitest contracts | May create transient test caches | After behavior changes |
-| `npm run build` | Create the Next.js production build | Writes `.next/` | After page, route, metadata, or production changes |
+| `npm run next:build` | Create the Next.js-only production build | Writes `.next/` | When validating Next.js without Cloudflare packaging |
+| `npm run build` | Create Next.js and OpenNext production output for Cloudflare Builds | Writes `.next/` and `.open-next/` | After page, route, metadata, or deployment changes |
 | `npm run cf:build` | Package Next.js for Cloudflare with OpenNext | Writes `.next/` and `.open-next/` | After deployment-related changes |
 | `npx wrangler deploy --dry-run` | Validate the packaged Worker and assets without publishing | Reads `.open-next/`; may write diagnostic logs | After `npm run cf:build` |
 | `npm run deploy` | Package and publish the Worker | Mutates the configured Cloudflare Worker/domain | Only from an authenticated, authorized environment |

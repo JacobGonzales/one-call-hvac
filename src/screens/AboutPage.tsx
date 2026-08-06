@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { SectionReveal } from "@/components/SectionReveal";
@@ -11,7 +13,6 @@ import { ServiceAreaSection } from "./about/ServiceAreaSection";
 import { WorkWithOneCallSection } from "./about/WorkWithOneCallSection";
 import { FooterShell } from "./about/FooterShell";
 import { MobileStickyCta } from "./about/MobileStickyCta";
-import "./about/about.css";
 
 export default function AboutPage() {
   const [menuOpen, setMenuOpen] = useState(false);

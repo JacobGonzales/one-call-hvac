@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { SectionReveal } from "@/components/SectionReveal";
@@ -13,7 +15,6 @@ import { FaqSection } from "./home/FaqSection";
 import { CallToActionSection } from "./home/CallToActionSection";
 import { FooterShell } from "./home/FooterShell";
 import { MobileStickyCta } from "./home/MobileStickyCta";
-import "./home/home.css";
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);

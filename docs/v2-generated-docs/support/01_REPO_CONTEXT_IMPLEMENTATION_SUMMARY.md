@@ -4,8 +4,8 @@
 
 - Phase: `discovery`
 - Required pre-execution rundown: delivered before the first write
-- Application implementation: not authorized and not performed
-- Completion status: repository context audited
+- Application implementation: Next.js/OpenNext migration authorized and performed after the original audit
+- Completion status: repository context refreshed for the corrected framework
 
 ## Files Created
 
@@ -20,9 +20,9 @@
 
 The V2 suite ledger was also updated for this handoff's lifecycle and outputs.
 
-## Intentionally Unchanged
+## Preserved Behavior
 
-All application source, public assets, configuration, package manifests, lockfile, generic handoffs, routes, content, metadata behavior, Formspree behavior, and prior generated architecture evidence remain unchanged. No generator script was added because current repository scale does not justify it.
+Public routes, visual content, public assets, contact details, Formspree behavior, navigation, carousel, FAQ, anchors, and mobile interactions were retained through the framework migration. No context generator was added because current repository scale does not justify it.
 
 ## Validation
 
@@ -35,3 +35,7 @@ All application source, public assets, configuration, package manifests, lockfil
 ## Approved Deviations
 
 None. Unknown deployment and external-service state is documented rather than inferred.
+
+## Post-Audit Framework And Deployment Refresh — 2026-08-06
+
+The application was corrected to the intended Next.js 16 App Router architecture. Route entrypoints and server metadata now live under `src/app/`, reusable UI compositions under `src/screens/`, and OpenNext packages the Node.js application for Cloudflare Workers. `https://utahonecall.com` remains the canonical and custom domain. Focused metadata and route-effect tests were added. Publication remains pending Cloudflare authentication or the connected Git deployment pipeline.

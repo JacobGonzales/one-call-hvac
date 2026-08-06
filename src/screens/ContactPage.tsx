@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { SectionReveal } from "@/components/SectionReveal";
@@ -8,7 +10,6 @@ import { ContactDetailsSection } from "./contact/ContactDetailsSection";
 import { ServiceAreaSection } from "./contact/ServiceAreaSection";
 import { FooterShell } from "./contact/FooterShell";
 import { MobileStickyCta } from "./contact/MobileStickyCta";
-import "./contact/contact.css";
 
 export default function ContactPage() {
   const [menuOpen, setMenuOpen] = useState(false);

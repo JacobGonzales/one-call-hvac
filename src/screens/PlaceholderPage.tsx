@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { Link } from "@/components/Link";
@@ -11,8 +13,6 @@ import {
 } from "@/config/site";
 import { FooterShell } from "./services/FooterShell";
 import { HeaderShell } from "./services/HeaderShell";
-import "./services/services.css";
-import "./placeholder/placeholder.css";
 
 const PLACEHOLDER_PAGES = {
   [LOCATION_ROUTE]: {
@@ -44,13 +44,15 @@ const PLACEHOLDER_PAGES = {
   },
 } as const;
 
-export default function PlaceholderPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const page = PLACEHOLDER_PAGES[window.location.pathname as keyof typeof PLACEHOLDER_PAGES];
+type PlaceholderPath = keyof typeof PLACEHOLDER_PAGES;
 
-  if (!page) {
-    return null;
-  }
+export default function PlaceholderPage({
+  pathname,
+}: {
+  pathname: PlaceholderPath;
+}) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const page = PLACEHOLDER_PAGES[pathname];
 
   return (
     <div className="one-call-services placeholder-page">

@@ -24,7 +24,7 @@ export function HeroSection() {
     }, 6500);
 
     return () => window.clearInterval(interval);
-  }, [activeSlide, isPaused]);
+  }, [activeSlide, isPaused, reduceMotion]);
 
   function showPreviousSlide() {
     setSlideDirection(-1);

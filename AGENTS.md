@@ -179,17 +179,20 @@ Use this structure for meaningful refactors:
 
 ## Current Stack
 
-- Framework: Vite 6
+- Framework: Next.js 16 App Router on Node.js
 - UI: React 19, strict TypeScript, and route-level CSS
-- Routing: a small browser-history adapter in `src/App.tsx` and `src/components/Link.tsx`
-- Linting: ESLint flat config with TypeScript and React Refresh rules
-- Build output: static assets in `dist/`
-- Installed compatibility stack: Next.js 16, OpenNext Cloudflare, Tailwind CSS 4, MUI, Radix UI, Motion, Vitest, Testing Library, and Playwright
+- Routing: file-system routes in `src/app/` with `next/link`
+- Linting: ESLint flat config with Next.js Core Web Vitals and TypeScript rules
+- Build output: `.next/`, packaged for Cloudflare in `.open-next/`
+- Deployment: OpenNext on a Node.js-compatible Cloudflare Worker via `wrangler.jsonc`
+- Production domain: `https://utahonecall.com`
+- Supporting stack: OpenNext Cloudflare, Tailwind CSS 4, MUI, Radix UI, Motion, Vitest, Testing Library, and Playwright
 
 ## Current Structure
 
-- `src/pages/`: thin route-level page compositions
-- `src/pages/<route>/`: route-owned sections, data, primitives, and CSS
+- `src/app/`: App Router route files, layouts, and server-owned metadata
+- `src/screens/`: page compositions
+- `src/screens/<route>/`: route-owned sections, data, primitives, and CSS
 - `src/components/`: shared routing, image, and application helpers
 - `src/config/`: shared business and route constants
 - `src/hooks/`: shared browser interaction hooks
@@ -207,22 +210,24 @@ Use this structure for meaningful refactors:
 - `/contact`: service request and contact information
 - `/404`: branded not-found page; unmatched paths render the same fallback
 
-Keep `src/App.tsx`, route titles in `src/components/RouteEffects.tsx`, and this inventory synchronized when routes change.
+Keep `src/app/`, route metadata, `src/config/site.ts`, and this inventory synchronized when routes change.
 
 ## Commands
 
-- `npm run dev`: start Vite on `localhost:3000`
+- `npm run dev`: start Next.js on `localhost:3000`
 - `npm run typecheck`: run strict TypeScript checks
 - `npm run lint`: run ESLint
-- `npm run build`: typecheck and create the production bundle
-- `npm run preview`: preview the production build on `localhost:3000`
+- `npm run build`: create the Next.js production build
+- `npm run cf:build`: package the Next.js build with OpenNext
+- `npm run deploy`: package and deploy the OpenNext Worker
+- `npm run preview`: package and preview the OpenNext Worker
 - `npm run sync:agents`: rebuild `AGENTS.md` from its source guides
 
-## React and Vite Conventions
+## React and Next.js Conventions
 
 - Use the `@/` alias for imports from `src/`.
-- Keep route declarations in `src/App.tsx`.
-- Route-level pages may use default exports because they are loaded with `React.lazy`.
+- Keep route declarations and metadata in `src/app/`.
+- Keep route files as Server Components unless browser state or event handling requires a focused Client Component boundary.
 - Use named exports for reusable components, hooks, constants, and helpers.
 - Keep route files as composition and state orchestration only; put each major visual section in its route folder.
 - Keep route-specific copy and list data in the route’s `*-data.ts` or `*-data.tsx` file.
@@ -252,6 +257,7 @@ Keep `src/App.tsx`, route titles in `src/components/RouteEffects.tsx`, and this 
 
 ## Deployment Notes
 
-- The host must serve `index.html` for unknown application paths so the client router can render direct visits such as `/about/social-media`, `/location`, and `/emergency`.
+- OpenNext packages the Next.js server and assets under `.open-next/`; Wrangler runs the worker with `nodejs_compat`.
+- The custom domain is `utahonecall.com`; keep `src/config/site.ts`, `wrangler.jsonc`, metadata/canonical behavior, and generated context docs synchronized when it changes.
 - The contact form submits to Formspree and requires network access in production.
 - Google Fonts are imported by the migrated page styles; the visual design depends on external font loading unless fonts are localized later.

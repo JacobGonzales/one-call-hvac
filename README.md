@@ -1,6 +1,8 @@
 # One Call Heating & Air
 
-A Vite + React + TypeScript website for One Call Heating & Air in northern Utah.
+A Next.js + React + TypeScript website for One Call Heating & Air in northern Utah.
+
+Production URL: `https://utahonecall.com`
 
 ## Pages
 
@@ -32,16 +34,17 @@ npm run lint
 npm run build
 ```
 
-The production bundle is written to `dist/`.
+Next.js writes its production build to `.next/`. The Cloudflare build then packages it into `.open-next/`.
 
 ## Project Structure
 
 ```text
 src/
+  app/          Next.js App Router routes and route metadata
   components/   Shared link, image, and route behavior
   config/       Business details and route constants
   hooks/        Shared browser behavior
-  pages/        Thin route compositions
+  screens/      Reusable page compositions and visual sections
     home/       Home sections, data, primitives, and CSS
     services/   Services sections, data, primitives, and CSS
     about/      About sections, data, primitives, and CSS
@@ -54,6 +57,15 @@ scripts/
 
 ## Hosting
 
-Configure the static host to serve `index.html` for unknown paths. This fallback is required for direct visits to client-side routes such as `/about/social-media`, `/location`, and `/emergency`.
+The site deploys through OpenNext to a Node.js-compatible Cloudflare Worker.
+`wrangler.jsonc` publishes `.open-next/worker.js` and `.open-next/assets`, and
+maps the Worker to `utahonecall.com`.
+
+```bash
+npm run deploy
+```
+
+For Cloudflare Builds, use `npm run cf:build` as the build command and
+`npm run cf:deploy` as the deploy command.
 
 The contact form posts to Formspree, and page styles currently load Archivo Black and Inter from Google Fonts.

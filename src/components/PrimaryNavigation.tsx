@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 import { Link } from "@/components/Link";
 import {
   ABOUT_ROUTE,
@@ -27,7 +31,7 @@ export function PrimaryNavigation({
   mobile = false,
   onNavigate,
 }: PrimaryNavigationProps) {
-  const pathname = window.location.pathname;
+  const pathname = usePathname();
 
   if (mobile) {
     return (

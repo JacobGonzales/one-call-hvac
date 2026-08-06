@@ -3,8 +3,6 @@ import { Link } from "@/components/Link";
 import { SectionReveal } from "@/components/SectionReveal";
 import { PHONE, PHONE_HREF } from "@/config/site";
 
-import "./not-found/not-found.css";
-
 export default function NotFoundPage() {
   return (
     <SectionReveal index={0}>

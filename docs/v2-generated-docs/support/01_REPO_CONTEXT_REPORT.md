@@ -2,77 +2,23 @@
 
 ## Current State Summary
 
-`one-call-hvac` is an npm-managed Vite 6 static SPA using React 19, strict TypeScript, route-level CSS, lazy route chunks, and a small browser-history router. Application content is stored in TS/TSX. Production output is `dist/`. The repository documents a required SPA host fallback but does not identify or configure a deployment provider.
+`one-call-hvac` is an npm-managed Next.js 16 App Router application using React 19, strict TypeScript, and route-owned CSS. Server route entrypoints and metadata live under `src/app/`; reusable interactive page compositions live under `src/screens/`. OpenNext packages the Node.js application for Cloudflare Workers at `https://utahonecall.com`.
 
-The application reads no environment variables and has no server boundary. Its active external dependencies are Formspree, Google Fonts, public phone/email handlers, and an external footer-credit link. It has seven declared public pathnames plus branded fallback behavior. Metadata is limited to one static description and client-updated route titles; no sitemap, robots, canonical, schema, redirect, or explicit noindex system was found.
+The application has seven primary public pathnames, a dedicated `/404`, and framework-owned unmatched-route handling. Known routes have server-rendered titles, descriptions, and canonical URLs. `/404` and unmatched routes are noindex. No sitemap, robots file, schema, redirect, authentication, database, analytics, or application-owned API route was found.
 
-## Scope And Sources Inspected
+## Environment, Dependencies, And Integrations
 
-- Repository instructions and README
-- `package.json`, `package-lock.json`, `.gitignore`
-- Vite, TypeScript, and ESLint configuration
-- `src/App.tsx`, site constants, navigation/link helpers, route effects
-- All route pages and placeholder/not-found behavior
-- Form source, CSS external URLs, public assets
-- `scripts/sync-agents.mjs`
-- Repository-owned environment, deployment, SEO-file, test-file, and external-integration searches
-- Current V2 ledger and shared execution contract
+No application environment-variable contract exists. Non-interactive publication requires Cloudflare authorization such as `CLOUDFLARE_API_TOKEN`; it must remain outside source and browser-exposed variables. Active runtime/deployment dependencies are Next.js, React, Motion, OpenNext, and Wrangler. Formspree is the only data-submission integration and remains a direct browser POST. Google Fonts and phone/email links are public browser integrations.
 
-## Context Documents Generated
+## Deployment Correction
 
-- `ENVIRONMENT_VARIABLES.md`
-- `ROUTE_INVENTORY.md`
-- `DEPENDENCY_INVENTORY.md`
-- `INTEGRATIONS_INVENTORY.md`
-- `VALIDATION_COMMANDS.md`
-- this detailed report
-- `01_REPO_CONTEXT_IMPLEMENTATION_SUMMARY.md`
-- `01_REPO_CONTEXT_HUMAN_TODO.md`
+The repository has been migrated from the incorrect Vite/static-assets configuration to the intended Next.js application model. `next build` creates `.next/`; `opennextjs-cloudflare build` produces `.open-next/worker.js` and `.open-next/assets`; Wrangler uses `nodejs_compat`, an asset binding, a self-service binding, and the `utahonecall.com` custom-domain route. The previously observed live domain still served an old `Hello world` Worker, so publication and live verification remain pending Cloudflare authentication or the connected Git deployment pipeline.
 
-## Findings And Decisions
+## Validation And Risks
 
-### Environment and deployment
+- Focused Vitest contracts cover metadata generation and route scroll/hash effects.
+- Typecheck, lint, Next production build, OpenNext packaging, Wrangler dry run, and Git whitespace checks are the required migration validation set.
+- Placeholder indexing decisions, Formspree delivery/account ownership, Node version pinning, and authenticated production publication remain follow-ups.
+- Generated docs must be refreshed when routes, metadata, environment usage, dependencies, integrations, or deployment change.
 
-No application environment contract exists. There are no `.env` files, env reads, or checked-in deployment bindings. The deployment target is therefore unknown. Installed OpenNext/Cloudflare packages do not prove Cloudflare is the active target because no matching config or script exists.
-
-### Routes and search controls
-
-Known routes are explicit, static, and exact-match. Placeholder routes are public at runtime but have no explicit indexing decision. Unknown paths render branded not-found content, while HTTP status depends on the host. No route contract test reconciles constants, resolver branches, navigation, titles, documentation, or future SEO files.
-
-### Dependencies
-
-React, React DOM, and Motion are source-referenced runtime dependencies. Vite/TypeScript/ESLint packages support the active toolchain. The larger Next/OpenNext, Tailwind, MUI, Radix, date, and test stacks are installed compatibility tooling but are not referenced by current app source or scripts. No dependency cleanup was performed or authorized.
-
-### Integrations
-
-Formspree is the only data-submission integration. It is a direct browser POST with no repository-controlled backend. There is no analytics, CMS/database, auth, booking, payment, monitoring, or app-owned API integration.
-
-### Generator decision
-
-A repo-context generator was not added. With seven static routes and no env/deployment schema, explicit Markdown inventories are simpler and easier to audit. Reconsider automation if route declarations grow, dynamic routes appear, or repeated drift makes manual reconciliation unreliable.
-
-## Hidden Assumptions And Edge Cases
-
-- Direct routes work only if the eventual host implements the documented SPA fallback.
-- Unknown routes may be soft 404s when the host returns `index.html` with HTTP 200.
-- Exact path comparisons make trailing-slash and case variants fall through to not found.
-- Placeholder routes may be indexed because no noindex policy exists.
-- Formspree account ownership, recipients, delivery, spam controls, and response UX are external and unverified.
-- Node/npm versions are unpinned.
-- Git branch, commit, and dirty-state evidence is unavailable because `.git` metadata is absent.
-- Generated docs become stale when routes, env usage, integrations, dependencies, or deployment change.
-
-## Validation Evidence
-
-- Required and optional context documents were generated from repository evidence.
-- Environment searches found no app-owned env reads or `.env` files.
-- Route searches found no dynamic/API/private routes, redirects, sitemap, robots, canonical, schema, or noindex implementation.
-- Dependency imports were reconciled against `package.json` categories.
-- No repository test files/config/scripts were found.
-- No Markdown lint/docs script exists.
-- `git diff --check` is unavailable because this workspace is not a Git worktree.
-- No application tests were run because no application or generator code changed.
-
-## Risks And Follow-Ups
-
-Human-owned deployment, external account, and indexing decisions are isolated in `01_REPO_CONTEXT_HUMAN_TODO.md`. Generic downstream handoffs should read all five context inventories before making repository-specific assumptions.
+See the five support inventories and `01_REPO_CONTEXT_HUMAN_TODO.md` for the source-backed details and remaining external actions.

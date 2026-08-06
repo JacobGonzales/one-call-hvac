@@ -2,9 +2,9 @@
 
 ## Summary
 
-The current application does not read any repository-defined environment variables. No `.env` files, environment helper modules, `import.meta.env` access, `process.env` access, deployment-variable bindings, or script-level environment lookups were found outside installed dependencies.
+The application does not read any repository-defined environment variables. No `.env` files or application-owned `process.env` access was found.
 
-This means the current Vite build has no source-backed required secrets, public build-time variables, optional application variables, or checked-in deployment-only bindings.
+Cloudflare deployment is configured through `wrangler.jsonc`. Wrangler authentication is deployment-only and must never be exposed to the browser bundle.
 
 ## Required Secrets
 
@@ -24,7 +24,11 @@ None found.
 
 ## Deployment-Only Values
 
-None found in repository-owned deployment configuration. No Wrangler, Vercel, Netlify, Docker, Firebase, or equivalent deployment file is checked in.
+| Variable | Required by | Secret | Default or fallback | Evidence |
+|---|---|---|---|---|
+| `CLOUDFLARE_API_TOKEN` | Non-interactive `wrangler deploy` sessions that do not already have Cloudflare authentication | Yes | None; authenticated interactive terminals may use Wrangler login state instead | Wrangler deploy error and `wrangler.jsonc` deployment workflow |
+
+Cloudflare Builds may provide deployment authorization through the connected project rather than a repository variable. No token value belongs in source, generated docs, or a `NEXT_PUBLIC_*` variable.
 
 ## Hardcoded Public Configuration That Is Not An Environment Variable
 
@@ -32,25 +36,29 @@ These values are visible in browser-delivered source or HTML and should not be t
 
 | Configuration | Current owner | Purpose | Notes |
 |---|---|---|---|
-| Formspree form action | `src/pages/contact/ContactDetailsSection.tsx` | External contact-form submission | Public browser endpoint; production account ownership and delivery cannot be verified from the repository |
+| Formspree form action | `src/screens/contact/ContactDetailsSection.tsx` | External contact-form submission | Public browser endpoint; production account ownership and delivery cannot be verified from the repository |
 | Phone, telephone URI, and email | `src/config/site.ts` plus some direct literals in page components | Public contact actions | Partly centralized; direct literals remain |
 | Public asset base | `src/config/site.ts` | Root-relative image and SVG paths | Defaults are encoded as a constant, not environment-driven |
 | Google Fonts stylesheet URLs | Route CSS files | Loads Archivo Black and Inter | External browser dependency; not configurable through env |
+| Canonical public site URL | `src/config/site.ts` | `https://utahonecall.com` | Application constant used by route canonical metadata |
+| Cloudflare custom domain | `wrangler.jsonc` | Maps the Worker to `utahonecall.com` | Deployment configuration, not an environment variable |
 
 ## Framework Defaults
 
-Vite exposes built-in values such as `import.meta.env.MODE`, but the application does not read them. The presence of transitive `dotenv` packages in `package-lock.json` does not establish an application environment-variable contract.
+Next.js exposes framework environment behavior, but the application does not currently read it. The presence of transitive `dotenv` packages does not establish an application environment-variable contract.
 
 ## Security And Maintenance Rules
 
 - Do not add secret values to this document or any generated report.
-- If a future integration requires credentials, read them only in an approved server-side or deployment boundary. This client-only Vite application cannot safely keep a secret in a `VITE_*` variable because such values are embedded in the browser bundle.
+- If a future integration requires credentials, read them only in an approved server-side or deployment boundary. `NEXT_PUBLIC_*` values are embedded in browser output and cannot hold secrets.
 - Refresh this inventory whenever environment helpers, deployment configuration, server functions, analytics, a CMS/database, or a different application framework is introduced.
+- Store `CLOUDFLARE_API_TOKEN` only in an approved secret store or local shell environment. Never prefix it with `NEXT_PUBLIC_`.
 
 ## Inspection Evidence
 
 - `package.json`
-- `vite.config.ts`
+- `next.config.ts`
+- `open-next.config.ts`
 - `src/`
 - `scripts/sync-agents.mjs`
 - repository deployment/environment filename search

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { SectionReveal } from "@/components/SectionReveal";
@@ -14,7 +16,6 @@ import {
 import { BundleSection } from "./services/BundleSection";
 import { FooterShell } from "./services/FooterShell";
 import { MobileStickyCta } from "./services/MobileStickyCta";
-import "./services/services.css";
 
 export default function ServicesPage() {
   const [menuOpen, setMenuOpen] = useState(false);

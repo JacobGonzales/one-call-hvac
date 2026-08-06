@@ -1,37 +1,17 @@
-import type { ImgHTMLAttributes } from "react";
+import NextImage, { type ImageProps as NextImageProps } from "next/image";
 
-type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
-  fill?: boolean;
-  priority?: boolean;
-};
+type ImageProps = NextImageProps;
 
 export function Image({
   alt,
-  decoding,
-  fill = false,
-  loading,
-  priority = false,
-  style,
+  fill,
   ...props
 }: ImageProps) {
   return (
-    <img
+    <NextImage
       {...props}
       alt={alt}
-      decoding={decoding ?? "async"}
-      loading={loading ?? (priority ? "eager" : "lazy")}
-      fetchPriority={priority ? "high" : undefined}
-      style={
-        fill
-          ? {
-              height: "100%",
-              inset: 0,
-              position: "absolute",
-              width: "100%",
-              ...style,
-            }
-          : style
-      }
+      fill={fill}
     />
   );
 }

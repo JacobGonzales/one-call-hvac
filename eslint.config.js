@@ -1,30 +1,15 @@
-import globals from "globals";
-import reactRefresh from "eslint-plugin-react-refresh";
-import tseslint from "typescript-eslint";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypeScript from "eslint-config-next/typescript";
 
-export default tseslint.config(
-  { ignores: ["dist", "onecallheatingandair-suite"] },
-  {
-    extends: [...tseslint.configs.recommended],
-    files: ["**/*.{ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: 2022,
-      globals: globals.browser,
-    },
-    plugins: {
-      "react-refresh": reactRefresh,
-    },
-    rules: {
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true }
-      ],
-    },
-  },
-  {
-    files: ["src/pages/**/*-data.tsx"],
-    rules: {
-      "react-refresh/only-export-components": "off",
-    },
-  },
-);
+export default defineConfig([
+  ...nextVitals,
+  ...nextTypeScript,
+  globalIgnores([
+    ".next/**",
+    ".open-next/**",
+    "dist/**",
+    "onecallheatingandair-suite/**",
+    "next-env.d.ts",
+  ]),
+]);

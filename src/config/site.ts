@@ -1,4 +1,5 @@
 export const ASSET_BASE = "/onecall-heating-and-air";
+export const SITE_URL = "https://utahonecall.com";
 export const HOME_ROUTE = "/";
 export const SERVICES_ROUTE = "/services";
 export const ABOUT_ROUTE = "/about";

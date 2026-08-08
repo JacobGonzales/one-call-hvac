@@ -9,6 +9,7 @@ export default defineConfig([
     ".next/**",
     ".open-next/**",
     "dist/**",
+    "free-quote-form/**",
     "onecallheatingandair-suite/**",
     "next-env.d.ts",
   ]),

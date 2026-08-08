@@ -1,0 +1,32 @@
+route,indexability,keyword,role,approved_variants,title_occurrences,description_occurrences,h1_occurrences,body_occurrences,faq_occurrences,internal_link_occurrences,total_occurrences,minimum_guidance,maximum_guidance,coverage_state,runtime_sources
+/,indexable,northern Utah HVAC service,primary,HVAC service northern Utah;northern Utah heating and cooling,1,0,0,0,0,0,1,,,healthy,.next/server/app/index.html
+/,indexable,Brigham City HVAC,supporting,HVAC in Brigham City;Brigham City heating and cooling,0,0,0,0,0,0,0,,,missing,.next/server/app/index.html
+/,indexable,HVAC contractor northern Utah,supporting,northern Utah HVAC contractor;local HVAC contractor,0,0,0,0,0,0,0,,,missing,.next/server/app/index.html
+/,indexable,heating and cooling northern Utah,supporting,northern Utah heating and cooling;heating and air northern Utah,0,0,0,0,0,0,0,,,missing,.next/server/app/index.html
+/services,indexable,air conditioning repair,supporting,AC repair;air conditioner repair,0,0,0,1,0,0,1,,,healthy,.next/server/app/services.html
+/services,indexable,HVAC repair near me,primary,heating and air repair near me;HVAC repairs near me,0,0,0,0,0,0,0,,,missing,.next/server/app/services.html
+/services,indexable,furnace repair,supporting,furnace repair near me;furnace service,0,0,0,3,0,0,3,,,healthy,.next/server/app/services.html
+/services,indexable,AC tune up,supporting,air conditioning tune up;AC tune up near me,0,0,0,0,0,0,0,,,missing,.next/server/app/services.html
+/services,indexable,heat pump installation,supporting,heat pump installer near me;heat pump service,0,0,0,0,0,0,0,,,missing,.next/server/app/services.html
+/services,indexable,mini split installation,supporting,mini-split installation;ductless mini split installation,0,0,0,0,0,0,0,,,missing,.next/server/app/services.html
+/about,indexable,Brigham City HVAC company,primary,HVAC company Brigham City;Brigham City heating and air company,1,0,0,1,0,0,2,,,healthy,.next/server/app/about.html
+/about,indexable,owner-operated HVAC company,supporting,owner-operated heating and cooling company;local owner-operated HVAC team,0,0,0,1,0,0,1,,,healthy,.next/server/app/about.html
+/about,indexable,local HVAC company,supporting,HVAC company near me;local heating and cooling company,0,0,0,1,0,0,1,,,healthy,.next/server/app/about.html
+/location,indexable,northern Utah HVAC service area,primary,HVAC service area northern Utah;northern Utah heating and air service area,0,0,0,1,0,0,1,,,healthy,.next/server/app/location.html
+/location,indexable,HVAC service near me,supporting,heating and cooling near me;local HVAC service,0,0,0,0,0,0,0,,,missing,.next/server/app/location.html
+/location,indexable,HVAC service Salt Lake County,supporting,Salt Lake County HVAC service;HVAC in Salt Lake County,0,0,0,0,0,0,0,,,missing,.next/server/app/location.html
+/location,indexable,HVAC service Davis County,supporting,Davis County HVAC service;HVAC in Davis County,0,0,0,0,0,0,0,,,missing,.next/server/app/location.html
+/location,indexable,HVAC service Weber County,supporting,Weber County HVAC service;HVAC in Weber County,0,0,0,0,0,0,0,,,missing,.next/server/app/location.html
+/contact,indexable,request HVAC service northern Utah,primary,northern Utah HVAC service request;request heating and air service,0,0,0,0,0,0,0,,,missing,.next/server/app/contact.html
+/contact,indexable,schedule HVAC service northern Utah,supporting,schedule northern Utah HVAC service;book HVAC service northern Utah,0,0,0,0,0,0,0,,,missing,.next/server/app/contact.html
+/contact,indexable,HVAC estimate northern Utah,supporting,northern Utah HVAC estimate;free HVAC estimate northern Utah,0,0,0,0,0,0,0,,,missing,.next/server/app/contact.html
+/contact,indexable,AC repair service request,supporting,request air conditioning repair;AC repair request,0,0,0,0,0,0,0,,,missing,.next/server/app/contact.html
+/contact,indexable,furnace repair service request,supporting,request furnace repair;furnace repair request,0,0,0,0,0,0,0,,,missing,.next/server/app/contact.html
+/about/social-media,indexable,One Call Heating & Air social media,primary,One Call Heating and Air social media,0,0,0,0,0,0,0,,,missing,.next/server/app/about/social-media.html
+/about/social-media,indexable,One Call Heating & Air project updates,supporting,One Call project updates,0,0,0,0,0,0,0,,,missing,.next/server/app/about/social-media.html
+/emergency,indexable,same day heating and air,primary,same day HVAC service;same day heating service,0,0,0,0,0,0,0,,,missing,.next/server/app/emergency.html
+/emergency,indexable,24 hour heating and air,supporting,24 hour HVAC service;24 hour heating service,0,0,0,0,0,0,0,,,missing,.next/server/app/emergency.html
+/emergency,indexable,same day HVAC service,supporting,same day HVAC services;urgent HVAC service,0,0,0,0,0,0,0,,,missing,.next/server/app/emergency.html
+/emergency,indexable,24 hour AC repair,supporting,24 hour air conditioning repair;emergency AC repair,0,0,0,0,0,0,0,,,missing,.next/server/app/emergency.html
+/emergency,indexable,emergency furnace repair northern Utah,supporting,24-hour furnace repair northern Utah;no-heat repair northern Utah,0,0,0,0,0,0,0,,,missing,.next/server/app/emergency.html
+/emergency,indexable,emergency AC repair northern Utah,supporting,northern Utah emergency AC repair;emergency air conditioner repair northern Utah,0,0,0,0,0,0,0,,,missing,.next/server/app/emergency.html

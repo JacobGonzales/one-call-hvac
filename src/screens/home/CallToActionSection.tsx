@@ -1,3 +1,4 @@
+import { Link } from "@/components/Link";
 import { CONTACT_ROUTE, PHONE_NUMBER } from "@/config/site";
 import { Icon } from "./Icon";
 
@@ -24,9 +25,9 @@ export function CallToActionSection() {
             Call {PHONE_NUMBER}
             <Icon name="phone" />
           </a>
-          <a href={CONTACT_ROUTE} className="oc-button oc-button-ghost oc-button-large">
+          <Link href={CONTACT_ROUTE} className="oc-button oc-button-ghost oc-button-large">
             Free Estimate
-          </a>
+          </Link>
         </div>
       </div>
     </section>

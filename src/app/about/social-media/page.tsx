@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 
+import { PAGE_METADATA } from "@/config/page-metadata";
 import { createPageMetadata } from "@/lib/metadata";
-import PlaceholderPage from "@/screens/PlaceholderPage";
-import "@/screens/placeholder/placeholder.css";
+import SocialMediaPage from "@/screens/SocialMediaPage";
 import "@/screens/services/services.css";
+import "@/screens/social-media/social-media.css";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Social Media | One Call Heating & Air",
-  description: "Follow One Call Heating & Air project and community updates.",
-  path: "/about/social-media",
-});
+export const metadata: Metadata = createPageMetadata(PAGE_METADATA.socialMedia);
 
 export default function Page() {
-  return <PlaceholderPage pathname="/about/social-media" />;
+  return <SocialMediaPage />;
 }

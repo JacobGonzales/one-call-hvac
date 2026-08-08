@@ -204,9 +204,9 @@ Use this structure for meaningful refactors:
 - `/`: home page
 - `/services`: HVAC services
 - `/about`: company and service-area information
-- `/about/social-media`: placeholder for social channels and community updates
-- `/location`: placeholder for business location and directions
-- `/emergency`: placeholder for 24/7 emergency HVAC information
+- `/about/social-media`: HVAC tips, project preparation, and community updates
+- `/location`: northern Utah service area grouped by county and community
+- `/emergency`: 24/7 emergency HVAC guidance and direct-call routing
 - `/contact`: service request and contact information
 - `/404`: branded not-found page; unmatched paths render the same fallback
 
@@ -260,5 +260,15 @@ Keep `src/app/`, route metadata, `src/config/site.ts`, and this inventory synchr
 
 - OpenNext packages the Next.js server and assets under `.open-next/`; Wrangler runs the worker with `nodejs_compat`.
 - The custom domain is `utahonecall.com`; keep `src/config/site.ts`, `wrangler.jsonc`, metadata/canonical behavior, and generated context docs synchronized when it changes.
-- The contact form submits to Formspree and requires network access in production.
+- The contact form submits to `POST /api/inquiries`, which validates input server-side and uses server-only Resend credentials to send the business notification and customer confirmation.
 - Google Fonts are imported by the migrated page styles; the visual design depends on external font loading unless fonts are localized later.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

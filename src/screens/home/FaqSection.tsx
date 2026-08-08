@@ -1,25 +1,34 @@
-import { motion, useReducedMotion } from "motion/react";
+"use client";
 
-import { faqs } from "./home-data";
+import { motion, useReducedMotion } from "motion/react";
+import { useState } from "react";
+
+import { StructuredData } from "@/components/StructuredData";
+import { HOME_ROUTE } from "@/config/site";
+import { createFaqStructuredData } from "@/lib/structured-data";
+import { faqs, hvacQuickAnswer } from "./home-data";
 import { SectionHeading } from "./SectionHeading";
 
-export function FaqSection({
-  openFaq,
-  onToggle,
-}: {
-  openFaq: number | null;
-  onToggle: (index: number) => void;
-}) {
+export function FaqSection() {
   const reduceMotion = useReducedMotion();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <section
+      id="faq"
       className="oc-section oc-soft"
       data-section="what people ask us."
-      aria-label="What People Ask Us."
+      aria-labelledby="home-faq-heading"
     >
+      <StructuredData
+        data={createFaqStructuredData({
+          path: HOME_ROUTE,
+          questions: [hvacQuickAnswer, ...faqs],
+        })}
+      />
       <div className="oc-container">
         <SectionHeading
+          id="home-faq-heading"
           centered
           eyebrow="Common Questions"
           lineOne="What People"
@@ -41,7 +50,9 @@ export function FaqSection({
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={answerId}
-                  onClick={() => onToggle(index)}
+                  onClick={() =>
+                    setOpenFaq((current) => (current === index ? null : index))
+                  }
                 >
                   {faq.question}
                   <motion.span

@@ -13,7 +13,7 @@ export function LocalCrewSection() {
           eyebrow="Why One Call"
           lineOne="Local Crew."
           lineTwo="No Runaround."
-          description="Most regional HVAC companies route you through a call center, dispatch a tech you've never met, and quote a system you don't need. We do the opposite."
+          description="Most regional HVAC companies route you through a call center, dispatch a tech you've never met, and quote a system you don't need. Here's what changes when you call a local HVAC contractor who owns the truck."
         />
         <div className="oc-why-grid">
           {whyCards.map((card) => (

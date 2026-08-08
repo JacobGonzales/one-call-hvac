@@ -27,6 +27,8 @@ export function MotionVisibility({
   return (
     <motion.div
       {...props}
+      aria-hidden={props["aria-hidden"] ?? !visible}
+      inert={visible ? undefined : true}
       initial={false}
       animate={visible ? visiblePosition : hiddenPosition}
       transition={

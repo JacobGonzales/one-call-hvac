@@ -1,32 +1,37 @@
+"use client";
+
 import { Image } from "@/components/Image";
 import { Link } from "@/components/Link";
 import { MotionVisibility } from "@/components/MotionVisibility";
 import { PrimaryNavigation } from "@/components/PrimaryNavigation";
+import { ResponsiveHeaderContactActions } from "@/components/ResponsiveHeaderContactActions";
 import { ASSET_BASE, HOME_ROUTE, CONTACT_ROUTE, PHONE, EMAIL } from "@/config/site";
+import { useMobileMenu } from "@/hooks/use-mobile-menu";
 import { Icon } from "./Icon";
 
-export function HeaderShell({
-  menuOpen,
-  onMenuToggle,
-}: {
-  menuOpen: boolean;
-  onMenuToggle: () => void;
-}) {
+const DRAWER_ID = "about-mobile-navigation";
+
+export function HeaderShell() {
+  const { closeMenu, drawerRef, menuOpen, toggleMenu, triggerRef } =
+    useMobileMenu();
+
   return (
     <>
       <MotionVisibility
         className="oca-drawer"
         data-open={menuOpen}
+        id={DRAWER_ID}
+        ref={drawerRef}
         visible={menuOpen}
         direction="right"
         aria-hidden={!menuOpen}
       >
-        <button type="button" aria-label="Close menu" onClick={onMenuToggle}>
+        <button type="button" aria-label="Close menu" onClick={closeMenu}>
           ×
         </button>
-        <PrimaryNavigation mobile onNavigate={onMenuToggle} />
-        <a href="tel:+18018642045" className="oca-drawer-phone">{PHONE}</a>
-        <Link href={CONTACT_ROUTE} className="oca-button oca-button-amber">Free Estimate</Link>
+        <PrimaryNavigation mobile onNavigate={closeMenu} />
+        <a href="tel:+18018642045" className="oca-drawer-phone" onClick={closeMenu}>{PHONE}</a>
+        <Link href={CONTACT_ROUTE} className="oca-button oca-button-amber" onClick={closeMenu}>Free Estimate</Link>
       </MotionVisibility>
 
       <div className="oca-announce">
@@ -40,8 +45,8 @@ export function HeaderShell({
       </div>
 
       <header className="oca-nav-wrap">
-        <div className="oca-container oca-nav">
-          <Link href={HOME_ROUTE} className="oca-nav-logo">
+        <div className="oca-container oca-nav site-header-grid">
+          <Link href={HOME_ROUTE} className="oca-nav-logo site-header-logo">
             <Image
               src={`${ASSET_BASE}/logo.png`}
               alt="One Call Heating & Air"
@@ -50,20 +55,23 @@ export function HeaderShell({
               priority
             />
           </Link>
-          <nav className="oca-nav-links" aria-label="Primary navigation">
+          <nav className="oca-nav-links site-header-links" aria-label="Primary navigation">
             <PrimaryNavigation />
           </nav>
-          <div className="oca-nav-right">
-            <a href="tel:+18018642045" className="oca-nav-phone">
+          <div className="oca-nav-right site-header-actions">
+            <ResponsiveHeaderContactActions />
+            <a href="tel:+18018642045" className="oca-nav-phone site-header-phone">
               <Icon name="phone" />{PHONE}
             </a>
-            <Link href={CONTACT_ROUTE} className="oca-button oca-button-outline">Free Quote</Link>
+            <Link href={CONTACT_ROUTE} className="oca-button oca-button-outline site-header-cta">Free Estimate</Link>
             <button
               type="button"
               className="oca-menu"
               aria-label="Open menu"
               aria-expanded={menuOpen}
-              onClick={onMenuToggle}
+              aria-controls={DRAWER_ID}
+              onClick={toggleMenu}
+              ref={triggerRef}
             >
               <Icon name="menu" />
             </button>

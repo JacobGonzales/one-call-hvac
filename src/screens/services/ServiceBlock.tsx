@@ -1,3 +1,4 @@
+import { Link } from "@/components/Link";
 import { ServiceData } from "./services-data";
 import { Icon } from "./Icon";
 
@@ -26,7 +27,13 @@ export function ServiceVisual({ service }: { service: ServiceData }) {
   );
 }
 
-export function ServiceCopy({ service }: { service: ServiceData }) {
+export function ServiceCopy({
+  headingId,
+  service,
+}: {
+  headingId: string;
+  service: ServiceData;
+}) {
   const titleWords = service.title.split(" ");
   const firstWord = titleWords[0];
   const remainingWords = titleWords.slice(1).join(" ");
@@ -34,7 +41,7 @@ export function ServiceCopy({ service }: { service: ServiceData }) {
   return (
     <div className="ocs-service-copy">
       <div className="ocs-service-number">{service.number}</div>
-      <h2>
+      <h2 id={headingId}>
         {remainingWords ? (
           <>
             {firstWord} <em>{remainingWords}</em>
@@ -44,6 +51,19 @@ export function ServiceCopy({ service }: { service: ServiceData }) {
         )}
       </h2>
       <p className="ocs-service-lead">{service.description}</p>
+      {"supportingDescription" in service ? (
+        <p className="ocs-service-lead">{service.supportingDescription}</p>
+      ) : null}
+      <dl className="ocs-service-fit">
+        <div>
+          <dt>Best fit when</dt>
+          <dd>{service.bestFor}</dd>
+        </div>
+        <div>
+          <dt>What to expect</dt>
+          <dd>{service.whatToExpect}</dd>
+        </div>
+      </dl>
       <ul className="ocs-feature-list">
         {service.features.map((feature) => (
           <li key={feature}>
@@ -53,21 +73,21 @@ export function ServiceCopy({ service }: { service: ServiceData }) {
         ))}
       </ul>
       <div className="ocs-service-actions">
-        <a
+        <Link
           href={service.primaryHref}
           className="ocs-button ocs-button-amber"
         >
           {service.primaryCta}
           <Icon name="arrow" />
-        </a>
-        <a
+        </Link>
+        <Link
           href={service.secondaryHref}
           className={`ocs-button ${
             service.dark ? "ocs-button-ghost" : "ocs-button-outline"
           }`}
         >
           {service.secondaryCta}
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -75,25 +95,25 @@ export function ServiceCopy({ service }: { service: ServiceData }) {
 
 export function ServiceBlock({
   id,
-  label,
   service,
 }: {
   id: string;
-  label: string;
   service: ServiceData;
 }) {
+  const headingId = `${id}-heading`;
+
   return (
     <section
       id={id}
       className={`ocs-service-block${service.dark ? " is-dark ocs-airflow" : ""}`}
       data-section={id}
-      aria-label={label}
+      aria-labelledby={headingId}
     >
       <div className="ocs-container">
         <div
           className={`ocs-service-row${service.visualFirst ? " is-visual-first" : ""}`}
         >
-          <ServiceCopy service={service} />
+          <ServiceCopy headingId={headingId} service={service} />
           <ServiceVisual service={service} />
         </div>
       </div>

@@ -1,76 +1,121 @@
 # Page Architecture Preflight Report
 
-## Outcome
+## Run Status
 
-The current public site is classified as **brownfield** with high confidence. The scope already has established route behavior, page-family composition, application-owned content, visual identity, interactions, metadata titles, and a live form integration. Preservation is therefore the default.
+- Canonical run: 27
+- Architecture step: 00
+- Phase: discovery
+- Status: audited
+- Execution mode: brownfield
+- Pre-execution rundown: delivered before the first write
+- Application implementation: prohibited by this handoff and not performed
 
-This was a discovery-only run. No application implementation occurred.
+## Why The Prior Profile Was Stale
 
-## Scope And Inputs Inspected
+The August 5 profile described the repository before the completed migration and SEO suite. It recorded:
 
-- Repository and nested instruction discovery: `AGENTS.md`, its two source guides, and nested-file search
-- Framework and deployment evidence: `package.json`, lockfile, Vite/TypeScript/ESLint configuration, `index.html`, README
-- Routes and navigation: `App.tsx`, `Link.tsx`, `PrimaryNavigation.tsx`, `RouteEffects.tsx`, site constants
-- Public families: home, services, about, contact, placeholder, not-found
-- Runtime content: route section TSX, route data modules, site constants
-- Styles and assets: shared CSS, all route CSS, and `public/onecall-heating-and-air/`
-- Interactions: mobile drawers, sticky CTAs, carousel, FAQ, anchor navigation, section reveals, Formspree form
-- SEO and operational searches: title, canonical, robots, sitemap, schema, indexability, analytics, auth, booking, payment, storage, and data-source patterns
-- Tests and validation: repository test/config/script inventory, TypeScript, ESLint
-- V2 evidence: shared contract, ledger handoff, suite/page-architecture/content-rewriting/support readmes, and newly initialized ledger
+- Vite and a browser-history resolver;
+- no Git metadata;
+- Formspree delivery;
+- no canonical, robots, sitemap, structured-data, or indexability system;
+- no authored tests;
+- `dist/` as the production output.
 
-## Current Structure
+The current evidence instead shows:
 
-The Vite application uses a small browser-history adapter rather than a routing dependency. `App.tsx` lazy-loads six route-level page modules and chooses them by pathname. Four main content pages are thin compositions of route-owned section components. Three established placeholder paths share one route page and the services shell. Unmatched paths and `/404` render the branded not-found page.
+- Next.js 16 App Router routes under `src/app/`;
+- OpenNext packaging and Cloudflare Worker deployment;
+- Git `main` at `71db84b` with an intentionally dirty accumulated worktree;
+- a Resend-backed `POST /api/inquiries` route with client/server validation;
+- centralized page metadata, canonical URLs, indexing policy, social previews, sitemap, robots, and JSON-LD;
+- 23 Vitest files and a 60-test baseline;
+- `.next/` and `.open-next/` build ownership.
 
-Content is application-owned TypeScript/TSX. Shared behavior is intentionally narrow: navigation, links, images, motion/reveals, route effects, and sticky visibility. Each major family owns its section components, data, CSS prefix, header/footer/icon/mobile-CTA shell, and visual composition.
+The old profile could not safely control later architecture work and has been replaced with a current repository-specific baseline.
 
-## Top Issues
+## Inspection Scope
 
-1. Route identity is manually repeated across constants, resolver branches, navigation, title records, README, and repository instructions with no executable drift check.
-2. Header/footer/icon/mobile-CTA structures and public facts are duplicated across families, but not identical enough to justify immediate replacement.
-3. Service-area lists and some contact/company facts live in several content owners and differ; consolidation could accidentally rewrite public claims.
-4. Metadata is limited to a static default description and runtime titles. No canonical, sitemap, robots, structured-data, route description, or explicit indexability layer was found.
-5. Test tooling is installed, but the repository has no authored unit, integration, browser, route-contract, or accessibility tests.
-6. Important interactive flows are source-visible but unverified in a browser: drawer focus behavior, carousel tab model, reflow/zoom, Formspree success/error behavior, and direct-route hosting.
-7. Git branch/commit/working-tree evidence is unavailable because `.git` metadata is absent.
+Inspected evidence included:
 
-## Decisions
+- merged repository instructions and the stale Vite repo addendum;
+- package, TypeScript, ESLint, Next, OpenNext, and Wrangler configuration;
+- the complete App Router tree and metadata/API routes;
+- all screen compositions, route-owned sections, shared components, hooks, data modules, CSS, and public assets;
+- all client boundaries and the server-compatible route/helper layer;
+- navigation, metadata, schema, sitemap, robots, review, service-area, and form ownership;
+- the inquiry API, payload validation, honeypot, request-size limit, Resend delivery, and error fallback;
+- all 23 test files and the immediately preceding typecheck/lint/test/build results;
+- generated v2 SEO, route, content-gap, and project-context evidence;
+- Git branch, revision, and working-tree state.
 
-- Preserve route-level page files as thin compositions.
-- Preserve route-owned sections, copy, ordering, CSS, and page-family vocabulary.
-- Reuse existing shared components and hooks before proposing new abstractions.
-- Treat suite example names as responsibilities, never naming requirements.
-- If later audits confirm a normalization need, prefer focused fact extraction or adapters before shell replacement.
-- Keep generated Markdown outside runtime code.
-- Keep Formspree and all protected routes/content/SEO/visual behavior unchanged until explicitly authorized.
+## Classification
 
-The complete execution rules and component preservation matrix are in `PAGE_ARCHITECTURE_EXECUTION_PROFILE.md`.
+The site is brownfield for all current routes and page families. Existing behavior, content, visual identity, search contracts, and conversion behavior take precedence over suite examples.
 
-## Proposed Discovery Sequence
+No ambiguity requires a hybrid boundary today. A later genuinely new page family could receive a bounded hybrid classification, but it would not authorize migration of existing families.
 
-1. Run page-architecture steps 01-04 in discovery against this profile.
-2. Produce one bounded normalization plan that identifies precise files, compatibility strategy, and behavior-preserving tests.
-3. Stop for user approval.
-4. If approved, update the profile phase and implement one responsibility or page-family batch at a time.
-5. Run step 05 to establish/verify route and page contracts before considering optional scaffolding step 06.
+## Current Architecture Summary
 
-This sequence is a recommendation, not implementation authorization.
+Route entrypoints are thin server components. They emit metadata/JSON-LD and compose client screen components. Home, services, about, contact, location, and placeholder families are assembled from focused section modules. Location and placeholders reuse the services shell; the four main families retain distinct headers, footers, icons, mobile CTAs, wrappers, and CSS prefixes.
 
-## Validation Evidence
+Static copy and facts remain in TypeScript/TSX data and section modules. Metadata, site constants, navigation, location inventory, reviews, form validation, Resend delivery, and structured data each have focused owners. Generated Markdown is not part of the runtime.
 
-- `npm run typecheck`: passed, exit 0.
-- `npm run lint`: passed, exit 0.
-- Source inventory confirmed there are no repository test files or test runner configs/scripts.
-- Production build was not run because the discovery preflight did not need to refresh `dist/`.
-- Browser, responsive, accessibility, live host, and Formspree submission checks were not run and are not claimed.
+## Top Architecture Findings
 
-## Supporting Artifacts
+1. **The repository instruction addendum is stale.** It still directs agents toward Vite, `src/App.tsx`, `dist/`, and Formspree. Current executable source proves a Next.js/OpenNext/Resend architecture.
+2. **Main screen client boundaries are broad.** Menu/sticky/FAQ state at the screen level places otherwise static sections below client components. Narrowing may help, but only if it does not trade bundle reduction for fragile prop plumbing or interaction regressions.
+3. **Family shells are duplicated but not equivalent.** Headers, footers, icons, and mobile CTAs share shapes while retaining distinct CTA, copy, SVG, and CSS behavior.
+4. **Content ownership is substantially improved but not complete.** Location data is canonical for seven counties/41 cities, while selected service-area summaries and page-family facts remain duplicated.
+5. **CSS has deliberate family ownership plus confirmed repetition.** Tokens and Google Font imports repeat, but cascade and family identity make blind extraction risky.
+6. **Tests provide a useful contract baseline.** Route/metadata/schema/content/navigation/review/form behavior is covered, but there is no tracked end-to-end suite and no complete keyboard/zoom/reflow baseline.
+7. **Sensitive flows are well isolated.** The shared quote form and API route have clear validation/delivery boundaries and must not be mixed into a page-shell refactor.
+8. **Production evidence remains stale.** Local source/build is authoritative for architecture; live search routes and placeholder metadata were behind in handoff 15.
 
-- `docs/v2-generated-docs/page-architecture/PAGE_ARCHITECTURE_EXECUTION_PROFILE.md`
-- `docs/v2-generated-docs/V2_SUITE_RUN_LEDGER.md`
-- `docs/v2-generated-docs/V2_SUITE_LEDGER_REPORT.md`
+## Component Preservation Decisions
 
-## Unresolved Risks
+- Keep App Router page files, root metadata layout, metadata/schema helpers, search routes, and API route ownership.
+- Reuse `PrimaryNavigation`, `Link`, `SectionReveal`, `GoogleReviewsSection`, `RelatedPagesSection`, form helpers, and canonical location data.
+- Keep family-specific shells and CSS until discovery proves a coherent shared responsibility and the user approves a compatibility plan.
+- Analyze narrower client islands during steps 01 and 03; do not rewrite screens during discovery.
+- Extend tests only after the intended contracts are defined and approved.
+- Never replace a component merely because its name or folder differs from a suite example.
 
-No ambiguity blocks the brownfield classification. Later implementation remains blocked on explicit approval after discovery reports and a concrete plan. Git/change attribution, live deployment, external form behavior, and visual/accessibility behavior remain inspection gaps.
+The full preservation matrix is in `PAGE_ARCHITECTURE_EXECUTION_PROFILE.md`.
+
+## Discovery Scope For Runs 28-31
+
+The next four runs may design, inventory, and recommend:
+
+- reusable page-frame/component responsibilities;
+- route catalog and lifecycle ownership;
+- page-family and cross-cutting contracts;
+- semantic, keyboard, accessibility, resize, zoom, and reflow requirements;
+- bounded implementation batches and prerequisite tests.
+
+They may not alter application code. Canonical run 32 is the explicit user approval gate.
+
+## Protected Areas
+
+Routes, slugs, fragments, metadata, indexability, schema, sitemap/robots, public copy and claims, reviews, visual identity, section order, navigation, CTAs, form fields/validation/API/Resend behavior, component exports, packages, deployment, and content-source boundaries remain protected.
+
+## Validation Baseline
+
+The immediately preceding run 26 validated the same application state with:
+
+- 60/60 tests across 23 files;
+- strict TypeScript;
+- ESLint;
+- Next.js 16.3/OpenNext Cloudflare production build;
+- generated metadata and six JSON-LD block checks;
+- `git diff --check`.
+
+This preflight changed generated documentation only. It does not repeat application validation or claim new browser/accessibility/live-host evidence.
+
+Profile-section inventory, current-framework/source agreement, the four-artifact contract, cross-document status agreement, and `git diff --check` passed.
+
+## Supporting Outputs
+
+- [Execution profile](./PAGE_ARCHITECTURE_EXECUTION_PROFILE.md)
+- [Implementation summary](./00_PREFLIGHT_IMPLEMENTATION_SUMMARY.md)
+- [Human TODO](./00_PREFLIGHT_HUMAN_TODO.md)
+- [Suite ledger](../V2_SUITE_RUN_LEDGER.md)

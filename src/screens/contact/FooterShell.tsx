@@ -1,7 +1,11 @@
 import { Image } from "@/components/Image";
 import { Link } from "@/components/Link";
 import { type ReactNode } from "react";
-import { ASSET_BASE, HOME_ROUTE, SERVICES_ROUTE, ABOUT_ROUTE, CONTACT_ROUTE, PHONE, EMAIL } from "@/config/site";
+import { ASSET_BASE, HOME_ROUTE, PHONE, EMAIL } from "@/config/site";
+import {
+  FOOTER_COMPANY_LINKS,
+  FOOTER_SERVICE_LINKS,
+} from "@/config/site-navigation";
 import { IconName, Icon } from "./Icon";
 
 export function FooterShell() {
@@ -19,22 +23,13 @@ export function FooterShell() {
               — from Salt Lake City to the Idaho border.
             </p>
           </div>
-          <FooterLinks heading="Services" links={[
-            ["Install", `${SERVICES_ROUTE}#install`],
-            ["Repair", `${SERVICES_ROUTE}#repair`],
-            ["Service & Tune-Ups", `${SERVICES_ROUTE}#service`],
-            ["Gold Membership", `${SERVICES_ROUTE}#maintenance`],
-          ]} />
-          <FooterLinks heading="Company" links={[
-            ["About Us", ABOUT_ROUTE],
-            ["All Services", SERVICES_ROUTE],
-            ["Free Estimate", CONTACT_ROUTE],
-          ]} />
+          <FooterLinks heading="Services" links={FOOTER_SERVICE_LINKS} />
+          <FooterLinks heading="Company" links={FOOTER_COMPANY_LINKS} />
           <div>
             <div className="occ-footer-heading">Contact</div>
             <FooterContact icon="phone" label="Phone · 24/7"><a href="tel:+18018642045">{PHONE}</a></FooterContact>
             <FooterContact icon="mail" label="Email"><a href={`mailto:${EMAIL}`}>{EMAIL}</a></FooterContact>
-            <FooterContact icon="pin" label="Shop">
+            <FooterContact icon="pin" label="Service Area">
               Brigham City, UT<br />Salt Lake · Davis · Morgan · Weber<br />Box Elder · Cache · Rich Counties
             </FooterContact>
           </div>
@@ -64,7 +59,7 @@ export function FooterLinks({
     <div>
       <div className="occ-footer-heading">{heading}</div>
       <ul className="occ-footer-links">
-        {links.map(([label, href]) => <li key={label}><a href={href}>{label}</a></li>)}
+        {links.map(([label, href]) => <li key={label}><Link href={href}>{label}</Link></li>)}
       </ul>
     </div>
   );

@@ -71,8 +71,7 @@ a[href]:not([class]):hover {
 }
 
 :is(.oc-button, .ocs-button, .oca-button, .occ-button),
-:is(.oc-mobile-call, .oc-mobile-quote, .ocs-mobile-call, .ocs-mobile-quote),
-:is(.oca-mobile-call, .oca-mobile-quote, .occ-mobile-call, .occ-mobile-form),
+.site-header-contact-action,
 :is(.oc-menu-button, .ocs-menu, .oca-menu, .occ-menu),
 :is(.oc-drawer, .ocs-drawer, .oca-drawer, .occ-drawer) > button,
 .oc-faq button,
@@ -113,18 +112,10 @@ a[href]:not([class]):hover {
 }
 
 .occ-button-blue:hover,
-.occ-button-blue:focus-visible,
-:is(.oc-mobile-quote, .ocs-mobile-quote, .oca-mobile-quote, .occ-mobile-form):hover,
-:is(.oc-mobile-quote, .ocs-mobile-quote, .oca-mobile-quote, .occ-mobile-form):focus-visible {
+.occ-button-blue:focus-visible {
   background: var(--cyan);
   color: var(--ink);
   box-shadow: 0 10px 24px rgba(91, 205, 240, 0.28);
-}
-
-:is(.oc-mobile-call, .ocs-mobile-call, .oca-mobile-call, .occ-mobile-call):hover,
-:is(.oc-mobile-call, .ocs-mobile-call, .oca-mobile-call, .occ-mobile-call):focus-visible {
-  background: var(--blue);
-  color: white;
 }
 
 :is(.oc-menu-button, .ocs-menu, .oca-menu, .occ-menu):hover,
@@ -156,13 +147,11 @@ a[href]:not([class]):hover {
 }
 
 :is(.oc-button, .ocs-button, .oca-button, .occ-button):active,
-:is(.oc-mobile-call, .oc-mobile-quote, .ocs-mobile-call, .ocs-mobile-quote):active,
-:is(.oca-mobile-call, .oca-mobile-quote, .occ-mobile-call, .occ-mobile-form):active {
+.site-header-contact-action:active {
   transform: translateY(1px) scale(0.985);
 }
 
-:is(.oc-drawer, .ocs-drawer, .oca-drawer, .occ-drawer),
-:is(.oc-mobile-sticky, .ocs-mobile-sticky, .oca-mobile-sticky, .occ-mobile-sticky) {
+:is(.oc-drawer, .ocs-drawer, .oca-drawer, .occ-drawer) {
   transition: none;
 }
 

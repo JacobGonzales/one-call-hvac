@@ -1,3 +1,5 @@
+import { Link } from "@/components/Link";
+import { CONTACT_ROUTE } from "@/config/site";
 import { Icon } from "./Icon";
 import { SectionHeading } from "./SectionHeading";
 
@@ -47,13 +49,13 @@ export function PricingCard({
           </li>
         ))}
       </ul>
-      <a
-        href={featured ? "/contact" : "tel:+18018642045"}
+      <Link
+        href={featured ? CONTACT_ROUTE : "tel:+18018642045"}
         className={`oc-button ${featured ? "oc-button-amber" : "oc-button-outline"}`}
       >
         {button}
         <Icon name="arrow" />
-      </a>
+      </Link>
       <p className="oc-fine-print">{finePrint}</p>
     </article>
   );
@@ -62,17 +64,19 @@ export function PricingCard({
 export function PricingSection() {
   return (
     <section
-      className="oc-section oc-paper"
+      id="pricing"
+      className="oc-section oc-paper oc-pricing-section"
       data-section="no hidden fees.pricing you'll see."
-      aria-label="No Hidden Fees.Pricing You'll See."
+      aria-labelledby="home-pricing-heading"
     >
       <div className="oc-container">
         <SectionHeading
+          id="home-pricing-heading"
           centered
           eyebrow="Up-Front Pricing"
           lineOne="No Hidden Fees."
           lineTwo="Pricing You'll See."
-          description="Two simple price points everyone asks about — diagnostic visits and our annual Gold membership. Everything else is quoted in writing before any work starts."
+          description="Two price points everyone asks about — the diagnostic visit and the annual Gold Membership. Everything else is quoted in writing before any work starts."
         />
         <div className="oc-pricing-grid">
           <PricingCard
@@ -80,7 +84,7 @@ export function PricingSection() {
             amount="$89"
             per="flat"
             title="One-Visit Diagnostic"
-            description="Real diagnosis — onsite, in person, with the tools to test the system. We tell you what's actually wrong before any quote."
+            description="A tech comes to your home, tests the system, and tells you what's wrong — in writing — before anything else happens."
             items={[
               "Onsite testing & diagnosis",
               "Written report of findings",
@@ -96,7 +100,7 @@ export function PricingSection() {
             amount="$99"
             per="/year"
             title="Annual Gold Membership"
-            description="Two free seasonal tune-ups (spring AC, fall furnace) plus priority scheduling, member pricing, and zero diagnostic fees the entire year."
+            description="Two free seasonal tune-ups (spring AC, fall furnace), priority scheduling, member pricing, and zero diagnostic fees all year."
             items={[
               "2 free tune-ups every year",
               "Priority emergency response",

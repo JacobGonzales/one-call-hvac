@@ -9,14 +9,15 @@ export function ServicesSection() {
     <section
       className="oc-section oc-paper"
       data-section="four lanes.one crew."
-      aria-label="Four Lanes.One Crew."
+      aria-labelledby="home-services-heading"
     >
       <div className="oc-container">
         <SectionHeading
+          id="home-services-heading"
           eyebrow="What We Do"
           lineOne="Four Lanes."
           lineTwo="One Crew."
-          description="Whether you need a brand-new system installed, a midnight emergency repair, a seasonal tune-up, or a maintenance plan that keeps you ahead of breakdowns — same crew, same number, same accountable answer every time."
+          description="If your system quit, that's a repair call. If it runs but it's aging or undersized, that's an install conversation. If everything is working and you want to keep it that way, schedule a seasonal tune-up — or lock in a maintenance plan so you never have to remember. One crew covers every northern Utah heating and cooling need — same number, same accountable answer."
         />
         <div className="oc-service-grid">
           {services.map((service) => (

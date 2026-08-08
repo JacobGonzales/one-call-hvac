@@ -1,22 +1,14 @@
 import { Link } from "@/components/Link";
 import { type ReactNode } from "react";
-import { SERVICES_ROUTE, ABOUT_ROUTE, CONTACT_ROUTE, PHONE_NUMBER } from "@/config/site";
+import { EMAIL, PHONE_NUMBER } from "@/config/site";
+import {
+  FOOTER_COMPANY_LINKS,
+  FOOTER_SERVICE_LINKS,
+} from "@/config/site-navigation";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 
 export function FooterShell() {
-  const footerServices = [
-    ["Install", `${SERVICES_ROUTE}#install`],
-    ["Repair", `${SERVICES_ROUTE}#repair`],
-    ["Service & Tune-Ups", `${SERVICES_ROUTE}#service`],
-    ["Gold Membership", `${SERVICES_ROUTE}#maintenance`],
-  ] as const;
-  const footerCompany = [
-    ["About Us", ABOUT_ROUTE],
-    ["All Services", SERVICES_ROUTE],
-    ["Free Estimate", CONTACT_ROUTE],
-  ] as const;
-
   return (
     <footer className="oc-footer" data-section="footer" aria-label="footer">
       <div className="oc-container">
@@ -31,17 +23,17 @@ export function FooterShell() {
               Lake City to the Idaho border.
             </p>
           </div>
-          <FooterLinks heading="Services" links={footerServices} />
-          <FooterLinks heading="Company" links={footerCompany} />
+          <FooterLinks heading="Services" links={FOOTER_SERVICE_LINKS} />
+          <FooterLinks heading="Company" links={FOOTER_COMPANY_LINKS} />
           <div>
             <h3>Contact</h3>
             <FooterContact icon="phone" label="Phone · 24/7">
               <a href="tel:+18018642045">{PHONE_NUMBER}</a>
             </FooterContact>
             <FooterContact icon="mail" label="Email">
-              <a href="mailto:brownzowl4626@gmail.com">brownzowl4626@gmail.com</a>
+              <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             </FooterContact>
-            <FooterContact icon="pin" label="Shop">
+            <FooterContact icon="pin" label="Service Area">
               Brigham City, UT
               <br />
               Salt Lake · Davis · Morgan · Weber

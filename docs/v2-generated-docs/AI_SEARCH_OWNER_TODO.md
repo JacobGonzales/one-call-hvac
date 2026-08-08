@@ -1,0 +1,17 @@
+# AI Search Owner TODO
+
+| Priority | Blocking | Action | Reason / affected scope | Completion condition |
+|---|---:|---|---|---|
+| High | Blocks safe quoting and richer schema | Verify every displayed price, waiver, discount, membership benefit, response-time statement, permit/warranty claim, tax credit, and rebate statement | AI and search systems can extract these specific claims from home, services, about, and contact content | Each claim has an owner, source, reviewed date, and approved wording in `AI_VISIBILITY_MANUAL_INPUTS.md` |
+| High | Blocks stronger entity trust | Confirm legal/public business name, service-area-only versus public-address model, hours, license identifier, insurance wording, and approved business category | Current Organization markup is intentionally minimal | Written entity record is approved and available for the structured-data handoff |
+| High | Blocks real search measurement | Configure Search Console after deployment, submit the sitemap, and provide query/page exports after useful data accumulates | No empirical discovery, citation, or query-shape evidence exists | Export stored under `docs/data/google-search-performance/` and support handoff 04 rerun |
+| High | Blocks crawler assurance | Verify production `robots.txt` and confirm Cloudflare security/bot rules permit OAI-SearchBot to reach the five indexable routes | Repository permission cannot prove CDN/WAF access | External requests return normal page responses without challenge or block |
+| Medium | Nonblocking policy decision | Decide whether GPTBot should remain allowed for potential model training | Search crawling and training crawling are separate owner choices | Decision, approver, and date recorded; robots changed only if requested |
+| Medium | Blocks off-site authority work | Verify or create the authoritative Google Business Profile and document approved public listing facts | Repository review links do not prove listing ownership or entity consistency | Profile owner, canonical listing URL, approved name/address/service-area/phone/hours recorded |
+| Medium | Blocks review freshness | Establish an owner and cadence for manually maintained Google reviews | Relative dates and displayed total can become stale | Named owner, refresh interval, and last-reviewed date recorded |
+| Medium | Blocks citation measurement | Start a recurring manual AI citation test log using approved prompts and exact result dates | No ChatGPT/Google AI/Copilot citation evidence exists | At least one baseline round is recorded in the worksheet without treating results as permanent |
+| Medium | Blocks broader entity corroboration | Supply approved social profiles, trade/manufacturer affiliations, license-board listing, and legitimate directory citations | No off-site corroboration inventory exists | URLs and ownership/status are documented and checked for consistent public facts |
+| Medium | Blocks placeholder indexing | Approve substantive emergency page content or retain `/emergency` as `noindex` | The current urgent route is thin | Route lifecycle and approved claims are documented |
+| Low | Nonblocking | Decide whether Analytics is wanted and approve privacy/consent requirements before implementation | AI/search referral and post-click behavior are currently unmeasured | Measurement decision is documented; implementation occurs only if approved |
+
+No item blocks the current technical baseline. Do not add richer schema, citations, or stronger AI-facing claims until the corresponding evidence is approved.

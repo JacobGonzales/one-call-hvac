@@ -1,0 +1,21 @@
+# Content Rewriting Implementation Summary
+
+- Phase: documentation-only implementation
+- Pre-execution rundown: delivered
+- Current step: canonical run 38 / homepage rewrite-preparation correction after `/services`
+- Included routes: 7
+- Excluded page route: `/404` because it is a noindex utility
+- Live application/runtime files: unchanged
+- Runtime behavior: unchanged
+- Generated outputs updated: homepage and Services writer briefs, all seven blank rewrite templates, content-rewriting instructions, directory README, cumulative report, summary, human TODO, and suite ledger
+- Runtime behavior: unchanged; no application source was rewritten
+- Metadata transfer rule: all seven package titles are marked `DO NOT CHANGE`; descriptions may be rewritten up to 160 characters including spaces
+- InHouse transfer rule: send only the short prompt, route-specific Simple InHouse Brief, narrow Metadata section, and complete Source Content; Codex keeps audit tables and cross-route evidence internal
+- InHouse output rule: exactly Rewritten Page, Meta Description, Keyword Check, and Writer Notes
+- Creative direction: the handoff now uses the proven concrete editorial style supplied by the owner—remove repeated promises, add source-backed decision value and service detail, make the customer experience concrete, and use a direct local voice
+- Keyword direction: each phrase has a target and hard maximum; the count matters, its source placement does not; the Keyword Check records target, maximum, version, final count, and status
+- Interactive-content correction: homepage includes all hero slides and all six FAQ answers; Home and Contact include their locked optional form disclosures
+- Validation: all seven rewrite templates use the four-section contract, are blank, retain matching fingerprints, and match their paired target/maximum keyword tables; all seven titles remain locked and descriptions retain the 160-character maximum; Home and Services expose approved variants and count-not-placement guidance; 2 prepared + 5 source-generated route statuses remain unchanged; `git diff --check` passed
+- Skipped validation: application tests, lint, typecheck, build, and browser QA were not repeated because only generated documentation changed
+- Approved deviations: homepage target variants use natural forms and one-use maximums; the earlier no-new-homepage-SEO-section decision is preserved; no Search Console output exists
+- Completion status: `/` and `/services` remain `ready_for_inhouse` under the tailored creative handoff; the homepage should be rerun through InHouse before Codex review

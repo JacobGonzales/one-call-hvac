@@ -10,7 +10,7 @@ Verify each page's `02_REWRITTEN_CONTENT.md` against its paired `01_SOURCE_CONTE
 
 - Execute every review check; do not approve from InHouse's self-reported tables alone.
 - Treat the source package, completed v2 outputs, and current application content as evidence.
-- Stop approval when freshness, phrase coverage, information preservation, page uniqueness, recommendations, or unresolved InHouse notes fail review.
+- Stop approval when freshness, phrase coverage, information preservation, page uniqueness, metadata, or unresolved Writer Notes fail review.
 - Request focused corrections instead of silently repairing a failed InHouse draft.
 - Update `03_CODEX_REVIEW.md` and `REWRITE_STATUS.csv`.
 - Return one decision: `approved`, `correction_required`, or `human_input_required`.
@@ -26,7 +26,7 @@ Decision-to-status rules:
 - Phrase, information-preservation, page-uniqueness, marker, or correctable formatting failures: `correction_required`
 - Missing owner confirmation, stale-source decision, or unresolved business claim: `human_input_required`
 - Every review gate passes: `approved` and record `codex_reviewed_at`
-- Never mark a route `approved` while `Needs Codex Review` contains an unresolved item.
+- Never mark a route `approved` while Writer Notes contains an unresolved concern or approval need.
 
 ## Step 1: Verify Phrase Coverage
 
@@ -52,6 +52,8 @@ Status values:
 - `needs human decision`
 
 A phrase can meet its numerical target and still fail when its use is awkward, misleading, repetitive, or disconnected from the surrounding section.
+
+A phrase may fall below its target and still pass when InHouse reports the omission, forcing it would make the copy worse, and Codex confirms that the page still serves the intended reader and topic. Maximums remain hard ceilings. Escalate only when accepting the omission would change an owner-approved keyword strategy.
 
 Also confirm:
 
@@ -133,13 +135,25 @@ Confirm that:
 - differentiation comes from useful information and reader value, not synonym replacement
 - InHouse did not invent facts or artificial differences merely to make the wording appear unique
 
-Review every item in InHouse's Uniqueness Notes against repository evidence. Do not accept InHouse's uniqueness assessment without comparison to related routes.
+InHouse does not need to report a uniqueness audit. Codex performs this comparison internally using the source package and related routes.
 
 If the completed v2 evidence does not support a distinct page purpose, return `human_input_required`. Do not approve superficial uniqueness.
 
-## Step 5: Review Additions And Recommendations
+## Step 5: Review Metadata, Additions, And Writer Notes
 
-InHouse may add or recommend services, facts, prices, guarantees, locations, offers, and claims. Review each addition before implementation.
+Review the four returned sections: Rewritten Page, Meta Description, Keyword Check, and Writer Notes. Treat Keyword Check as a writer self-check only; Codex must recount phrases independently.
+
+The keyword target governs final frequency, not placement. A phrase may move to any natural heading, paragraph, answer, or callout. Do not reject a rewrite merely because a phrase moved away from its source location.
+
+For metadata:
+
+- reject any proposed meta title or title change
+- accept `Unchanged` when no better description is offered
+- recount every proposed meta description, including spaces
+- reject descriptions over 160 characters
+- review the description for accuracy, usefulness, and consistency with the page
+
+InHouse may identify or accidentally add services, facts, prices, guarantees, locations, offers, and claims. Review each addition before implementation.
 
 Record:
 
@@ -151,7 +165,7 @@ Record:
 
 Do not silently publish a new price, guarantee, service area, offer, or business commitment without the appropriate confirmation.
 
-Review every item under `Needs Codex Review`. An unresolved item blocks approval.
+Review every item under Writer Notes. An unresolved concern or approval need blocks approval. `None` is valid when Codex finds no issue independently.
 
 ## Step 6: Review Page Quality
 
@@ -233,7 +247,14 @@ Current source content SHA-256:
 - Recognized markers remaining after cleanup:
 - Legitimate non-marker plus signs preserved:
 
-## Needs Codex Review
+## Meta Description Review
+
+- Submitted description:
+- Submitted character count:
+- Verified character count:
+- Result:
+
+## Writer Notes Review
 
 - Item:
   - Resolution:
@@ -252,7 +273,7 @@ Current source content SHA-256:
 
 ## Acceptance Criteria
 
-- all required phrases fall within their approved ranges
+- all required phrases fall within their approved ranges, or a below-target natural omission is documented and approved by Codex without weakening page intent
 - no phrase exceeds its maximum
 - all required phrase occurrences use valid paired plus-sign markers during review
 - phrase placement reads naturally
@@ -266,8 +287,10 @@ Current source content SHA-256:
 - uniqueness comes from useful page-specific value rather than superficial rewording
 - no do-not-import content was pulled from another route
 - no unsupported uniqueness was invented
-- additions and recommendations are reviewed
-- every `Needs Codex Review` item is resolved
+- the current meta title remains unchanged and no alternative title is introduced
+- a proposed meta description is accurate and no longer than 160 characters, or it remains unchanged
+- additions and Writer Notes are reviewed
+- every Writer Notes concern or approval need is resolved
 - marker plus signs are removed only from the approved publish-ready transfer copy
 - no recognized marker remains in Approved Publish-Ready Content
 - legitimate non-marker plus signs remain unchanged

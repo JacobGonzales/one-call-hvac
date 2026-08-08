@@ -146,7 +146,7 @@ Rewrite safety rules:
 - A rewrite may place required phrases anywhere they fit naturally.
 - A rewrite may replace a close-variant keyword only when the replacement is listed in the page's approved close variants.
 - If a phrase falls below its target or exceeds its maximum after a rewrite, flag it in the coverage checklist before finalizing.
-- Do not stuff required phrases into unnatural copy. If a target cannot be met naturally, list it as a human review item.
+- Do not stuff required phrases into unnatural copy. If a target cannot be met naturally, list it for Codex review; Codex may approve an omission when page intent and useful coverage remain intact.
 - Keep title/H1/body/FAQ coverage separate. A keyword preserved only in metadata may still be weak if it disappeared from visible body copy.
 
 Phrase-usage requirement rules:
@@ -165,7 +165,9 @@ Phrase-usage requirement rules:
 
 Section-preservation rules:
 
-- Add every visible content section to the Section Preservation Inventory.
+- Add every human-visible content section to the Section Preservation Inventory, including content revealed by accordions, disclosures, tabs, and carousels.
+- Do not equate a collapsed or inactive client state with absent content. Reconcile generated HTML with route-owned data and component sources so every FAQ answer, quick answer, alternate slide, and optional disclosure is captured.
+- Keep customer-authored reviews and operational form controls explicitly locked when they are included; completeness does not grant permission to paraphrase them.
 - Record the reader purpose and distinct information for each section.
 - Default `May section be merged or removed?` to `No`.
 - Set it to `Yes` only when completed v2 evidence shows that another named section fully covers the same reader purpose and every distinct information point.
@@ -212,6 +214,16 @@ Source files:
 
 Short source-backed summary of what this page is supposed to help the user decide or do.
 
+## Simple InHouse Brief
+
+- Reader: [who this page is for]
+- Goal: [what the reader should understand or do]
+- Writing freedom: [what may be rewritten, shortened, reordered, or combined]
+- Must preserve accurately: [important facts, sections, actions, and complete interactive states]
+- Locked: [reviews, forms, prices, claims, links, or other protected content]
+- Keywords: [short phrase list with target counts and hard maximums]; counts matter, placement does not; omit/report awkward phrases rather than stuffing them.
+- Metadata: Do not change the current title; an optional description must be 160 characters or fewer.
+
 ## Page Uniqueness Brief
 
 ### Page's Exclusive Job
@@ -241,8 +253,9 @@ What this page helps the reader understand, decide, or do that nearby pages do n
 
 ## Metadata
 
-- Title:
+- Title: [current title] — DO NOT CHANGE
 - Description:
+- Description rule: May be rewritten; maximum 160 characters including spaces.
 - H1:
 
 ## Target Keywords
@@ -313,28 +326,21 @@ Rewrite status: Awaiting InHouse
 
 ## Rewritten Page
 
-<!-- Paste the complete InHouse rewrite here. Keep paired +required phrase+ markers in place. -->
+<!-- Paste the complete InHouse rewrite here. Keep structural and paired +keyword phrase+ markers. -->
 
-## Required Phrase Counts
+## Meta Description
 
-| Required phrase | Target uses | Maximum uses | Final uses |
-|---|---:|---:|---:|
+- Description:
+- Character count:
 
-## Consolidation Notes
+## Keyword Check
 
-<!-- Record sections or passages InHouse condensed, combined, or substantially reorganized. -->
+| Requested phrase | Target | Maximum | Version used | Final count | Status |
+|---|---:|---:|---|---:|---|
 
-## InHouse Recommendations
+## Writer Notes
 
-<!-- Record recommended services, facts, prices, guarantees, locations, offers, or claims when provided. -->
-
-## Uniqueness Notes
-
-<!-- Record unique information preserved, unique angles strengthened, generic overlap reduced, and any cross-page concerns. -->
-
-## Needs Codex Review
-
-<!-- Record unresolved phrase, section, or instruction conflicts reported by InHouse. -->
+<!-- Include only genuine concerns or approval needs. Write "None" when there are no issues. -->
 ```
 
 The generator must create this second file for every page even though its rewritten body and tables are initially blank. InHouse output is pasted into this file. Codex uses the paired source and rewrite files during post-rewrite review.
@@ -390,6 +396,7 @@ Status rules:
 ## Source Freshness Rules
 
 - Calculate the fingerprint from extracted visible content before adding plus-sign markers.
+- When the base fingerprint represents only the initial server-rendered state, separately verify and record the authoritative source data for collapsed, inactive, or interaction-revealed content.
 - Use this exact normalization sequence:
   1. Preserve content in rendered reading order.
   2. Normalize Unicode to NFC.
@@ -487,7 +494,7 @@ Before/after rewrite coverage requirements when the user asks Codex to rewrite c
   - `status` such as pass, below target, above maximum, unnatural placement, replaced by approved variant, or needs review
   - `replacement_variant`
   - `notes`
-- Treat below-target, above-maximum, or unnatural required-phrase usage as a review blocker unless the user approves the change.
+- Treat above-maximum or unnatural usage as a correction blocker. Treat below-target usage as a Codex review item that may pass when forcing the phrase would reduce readability and the page still covers the intended topic; require human approval only when the omission changes business or search strategy.
 
 Validation commands:
 - `git diff --check`
@@ -498,7 +505,7 @@ Validation commands:
 Acceptance criteria:
 - The directory can be copied or regenerated in another repo with minimal repo-specific assumptions.
 - Each included page has a populated `01_SOURCE_CONTENT.md`.
-- Each included page has a blank `02_REWRITTEN_CONTENT.md` ready for InHouse output.
+- Each included page has a blank four-section `02_REWRITTEN_CONTENT.md` ready for InHouse output.
 - `REWRITE_STATUS.csv` has exactly one row for every included page.
 - Required phrases in source content use paired plus-sign markers consistently.
 - Each included page has protected keyword tiers for rewrite safety.
@@ -531,5 +538,5 @@ Recommended workflow:
 ## Quick Prompt Version
 
 ```text
-After the entire v2 suite is complete, create or refresh `docs/v2-generated-docs/content-rewriting/page-content-directory/` as a paired rewrite workspace for every public indexable content page. Inspect route files, sitemap/indexable route policy, content sources, metadata helpers, keyword maps, protected keyword ledgers, completed v2 outputs, route inventory docs, and Search Console exports when present. Create one route folder per page. Populate `01_SOURCE_CONTENT.md` with route context, generation time, source commit, normalized visible-content SHA-256, page intent, phrase requirements, target and maximum counts, a section-preservation inventory, complete source content, and a Page Uniqueness Brief derived by comparing the page with its closest related routes. The uniqueness brief must identify the page's exclusive job, related-page overlap, unique information that must survive, unique angles to strengthen, generic overlap to reduce, and content that must not be imported from other routes. Flag pages without defensible unique value instead of inventing differences. Default every section to not mergeable or removable unless evidence explicitly permits it. Wrap every visible required phrase occurrence with paired plus signs such as `+hydro jetting Denver+`; the markers identify the phrase but do not lock its position. Also create `02_REWRITTEN_CONTENT.md` for every page with the expected source fingerprint, standard headings, blank rewritten body, blank final phrase counts, blank consolidation notes, blank InHouse recommendations, blank uniqueness notes, and blank Codex-review items. Do not copy the source body into the rewrite file. Create `REWRITE_STATUS.csv` with one row per page and the required workflow state, paths, source fingerprint, timestamps, human-input flag, and notes. Preserve later route states when refreshing the directory. Exclude private, API, noindex, redirect, and asset routes. Do not change live page copy. Run `git diff --check` and repo docs validation if available.
+After the entire v2 suite is complete, create or refresh `docs/v2-generated-docs/content-rewriting/page-content-directory/` as a paired rewrite workspace for every public indexable content page. Inspect route files, sitemap/indexable route policy, content sources, metadata helpers, keyword maps, protected keyword ledgers, completed v2 outputs, route inventory docs, and Search Console exports when present. Create one route folder per page. Populate `01_SOURCE_CONTENT.md` with route context, generation time, source commit, normalized visible-content SHA-256, page intent, phrase requirements, target and maximum counts, a section-preservation inventory, complete source content, and a Page Uniqueness Brief derived by comparing the page with its closest related routes. During preparation, add a Simple InHouse Brief that reduces this evidence to the reader, goal, writing freedom, must-preserve facts, locked content, natural keyword guidance, and metadata rule. Flag pages without defensible unique value instead of inventing differences. Default every section to not mergeable or removable unless evidence explicitly permits it. Wrap every visible required phrase occurrence with paired plus signs such as `+hydro jetting Denver+`; the markers identify the phrase but do not lock its position. Also create `02_REWRITTEN_CONTENT.md` for every page with the expected source fingerprint and four blank output sections: Rewritten Page, Meta Description, Keyword Check, and Writer Notes. Do not copy the source body into the rewrite file. Create `REWRITE_STATUS.csv` with one row per page and the required workflow state, paths, source fingerprint, timestamps, human-input flag, and notes. Preserve later route states when refreshing the directory. Exclude private, API, noindex, redirect, and asset routes. Do not change live page copy. Run `git diff --check` and repo docs validation if available.
 ```

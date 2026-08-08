@@ -5,16 +5,17 @@ export function ValuesSection() {
   return (
     <section
       className="oca-section"
-      data-section="honest work.cold winters."
-      aria-label="Honest Work.Cold Winters."
+      data-section="how the work actually gets done."
+      aria-label="How the Work Actually Gets Done."
     >
       <div className="oca-container">
         <div className="oca-section-head">
-          <div className="oca-eyebrow">What We Stand For</div>
-          <h2>Honest Work.<br /><em>Cold Winters.</em></h2>
+          <div className="oca-eyebrow">The Working Model</div>
+          <h2>How the Work<br /><em>Actually Gets Done.</em></h2>
           <p>
-            The things that separate a one-call fix from a three-visit ordeal.
-            None of this is flashy — it&apos;s the stuff most HVAC shops skip.
+            Most HVAC shops skip the basics that keep a one-call fix from
+            turning into a three-visit ordeal. Here is what One Call does
+            differently as an owner-operated HVAC company.
           </p>
         </div>
         <div className="oca-values">

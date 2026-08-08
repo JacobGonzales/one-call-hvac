@@ -1,7 +1,11 @@
 import { Image } from "@/components/Image";
 import { Link } from "@/components/Link";
 import { type ReactNode } from "react";
-import { ASSET_BASE, HOME_ROUTE, SERVICES_ROUTE, ABOUT_ROUTE, CONTACT_ROUTE, PHONE_NUMBER, EMAIL } from "@/config/site";
+import { ASSET_BASE, HOME_ROUTE, PHONE_NUMBER, EMAIL } from "@/config/site";
+import {
+  FOOTER_COMPANY_LINKS,
+  FOOTER_SERVICE_LINKS,
+} from "@/config/site-navigation";
 import { IconName, Icon } from "./Icon";
 
 export function FooterShell() {
@@ -26,20 +30,11 @@ export function FooterShell() {
           </div>
           <FooterLinks
             heading="Services"
-            links={[
-              ["Install", "#install"],
-              ["Repair", "#repair"],
-              ["Service & Tune-Ups", "#service"],
-              ["Gold Membership", "#maintenance"],
-            ]}
+            links={FOOTER_SERVICE_LINKS}
           />
           <FooterLinks
             heading="Company"
-            links={[
-              ["About Us", ABOUT_ROUTE],
-              ["All Services", SERVICES_ROUTE],
-              ["Free Estimate", CONTACT_ROUTE],
-            ]}
+            links={FOOTER_COMPANY_LINKS}
           />
           <div>
             <div className="ocs-footer-heading">Contact</div>
@@ -49,7 +44,7 @@ export function FooterShell() {
             <FooterContact icon="mail" label="Email">
               <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             </FooterContact>
-            <FooterContact icon="pin" label="Shop">
+            <FooterContact icon="pin" label="Service Area">
               Brigham City, UT
               <br />
               Salt Lake · Davis · Morgan · Weber
@@ -99,7 +94,7 @@ export function FooterLinks({
       <ul className="ocs-footer-links">
         {links.map(([label, href]) => (
           <li key={label}>
-            <a href={href}>{label}</a>
+            <Link href={href}>{label}</Link>
           </li>
         ))}
       </ul>

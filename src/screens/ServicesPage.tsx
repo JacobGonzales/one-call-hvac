@@ -1,9 +1,9 @@
-"use client";
-
-import { useState } from "react";
-
 import { SectionReveal } from "@/components/SectionReveal";
-import { useStickyCta } from "@/hooks/use-sticky-cta";
+import { GoogleReviewsSection } from "@/components/GoogleReviewsSection";
+import { KeywordContentSection } from "@/components/KeywordContentSection";
+import { PageFaqSection } from "@/components/PageFaqSection";
+import { PageQuickAnswerSection } from "@/components/PageAnswersSection";
+import { RelatedPagesSection } from "@/components/RelatedPagesSection";
 import { HeaderShell } from "./services/HeaderShell";
 import { ServicesHeroSection } from "./services/ServicesHeroSection";
 import { ServiceToc } from "./services/ServiceToc";
@@ -14,30 +14,35 @@ import {
   ServiceTuneUpSection,
 } from "./services/ServiceSections";
 import { BundleSection } from "./services/BundleSection";
+import { ServiceDecisionSection } from "./services/ServiceDecisionSection";
+import { ServicePlanningResourceSection } from "./services/ServicePlanningResourceSection";
 import { FooterShell } from "./services/FooterShell";
-import { MobileStickyCta } from "./services/MobileStickyCta";
+import {
+  servicesAnswersContent,
+  servicesKeywordContent,
+} from "./services/services-data";
 
 export default function ServicesPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const stickyVisible = useStickyCta(280);
-
   return (
     <div className="one-call-services">
-      <HeaderShell
-        menuOpen={menuOpen}
-        onMenuToggle={() => setMenuOpen((current) => !current)}
-      />
+      <HeaderShell />
       <main>
         <SectionReveal index={0}><ServicesHeroSection /></SectionReveal>
-        <SectionReveal index={1}><ServiceToc /></SectionReveal>
-        <SectionReveal index={2}><InstallSection /></SectionReveal>
-        <SectionReveal index={3}><RepairSection /></SectionReveal>
-        <SectionReveal index={4}><ServiceTuneUpSection /></SectionReveal>
-        <SectionReveal index={5}><MaintenanceSection /></SectionReveal>
-        <SectionReveal index={6}><BundleSection /></SectionReveal>
+        <SectionReveal index={1}><GoogleReviewsSection /></SectionReveal>
+        <SectionReveal index={2}><ServiceToc /></SectionReveal>
+        <SectionReveal index={3}><InstallSection /></SectionReveal>
+        <SectionReveal index={4}><RepairSection /></SectionReveal>
+        <SectionReveal index={5}><ServiceTuneUpSection /></SectionReveal>
+        <SectionReveal index={6}><MaintenanceSection /></SectionReveal>
+        <SectionReveal index={7}><ServiceDecisionSection /></SectionReveal>
+        <SectionReveal index={8}><BundleSection /></SectionReveal>
+        <SectionReveal index={9}><ServicePlanningResourceSection /></SectionReveal>
+        <SectionReveal index={10}><KeywordContentSection content={servicesKeywordContent} /></SectionReveal>
+        <SectionReveal index={11}><PageQuickAnswerSection content={servicesAnswersContent} /></SectionReveal>
+        <SectionReveal index={12}><PageFaqSection content={servicesAnswersContent} /></SectionReveal>
+        <SectionReveal index={13}><RelatedPagesSection page="services" /></SectionReveal>
       </main>
-      <SectionReveal index={7}><FooterShell /></SectionReveal>
-      <MobileStickyCta visible={stickyVisible} />
+      <SectionReveal index={14}><FooterShell /></SectionReveal>
     </div>
   );
 }

@@ -1,6 +1,9 @@
+"use client";
+
 import { Image } from "@/components/Image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Link } from "@/components/Link";
 import { ASSET_BASE, CONTACT_ROUTE, PHONE_NUMBER } from "@/config/site";
 import { equipment, heroSlides } from "./home-data";
 import { Icon } from "./Icon";
@@ -9,12 +12,16 @@ import { Logo } from "./Logo";
 export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [slideDirection, setSlideDirection] = useState(1);
-  const [isPaused, setIsPaused] = useState(false);
+  const [focusPaused, setFocusPaused] = useState(false);
+  const [motionPaused, setMotionPaused] = useState(false);
   const reduceMotion = useReducedMotion();
+  const automaticMotionPaused = Boolean(
+    reduceMotion || focusPaused || motionPaused,
+  );
   const slide = heroSlides[activeSlide];
 
   useEffect(() => {
-    if (reduceMotion || isPaused) {
+    if (automaticMotionPaused) {
       return;
     }
 
@@ -24,7 +31,7 @@ export function HeroSection() {
     }, 6500);
 
     return () => window.clearInterval(interval);
-  }, [activeSlide, isPaused, reduceMotion]);
+  }, [activeSlide, automaticMotionPaused]);
 
   function showPreviousSlide() {
     setSlideDirection(-1);
@@ -49,103 +56,142 @@ export function HeroSection() {
       data-section="one call.done."
       data-carousel-slide={activeSlide}
       aria-label="One Call.Done."
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={() => setIsPaused(false)}
+      onFocusCapture={() => setFocusPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setFocusPaused(false);
+        }
+      }}
     >
-      <Image
-        src={`${ASSET_BASE}/hero-technician.jpg`}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="oc-hero-background"
-      />
-      <div className="oc-hero-overlay" />
-      <div className="oc-hero-glow oc-cool-glow" />
-      <div className="oc-hero-glow oc-warm-glow" />
-      <div className="oc-hero-center">
-        <div className="oc-mobile-logo">
-          <Logo mobile />
-        </div>
-        <div className="oc-emergency">
-          <span />
-          24/7 Emergency Service · Brigham City, UT
-        </div>
-        <AnimatePresence initial={false} mode="wait">
+      {heroSlides.map((item, index) => {
+        const isActive = index === activeSlide;
+
+        return (
           <motion.div
-            key={slide.label}
-            id="hero-slide-panel"
-            className="oc-hero-slide"
-            role="tabpanel"
-            aria-label={slide.label}
-            initial={{ opacity: 0, x: reduceMotion ? 0 : slideDirection * 42 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: reduceMotion ? 0 : slideDirection * -42 }}
+            className="oc-hero-background-layer"
+            data-active={isActive}
+            data-hero-background={item.label}
+            key={item.backgroundImage}
+            initial={false}
+            animate={{
+              opacity: isActive ? 1 : 0,
+              scale: isActive ? 1 : 1.025,
+            }}
             transition={
               reduceMotion
                 ? { duration: 0 }
-                : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }
+                : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
             }
+            style={{ zIndex: isActive ? 1 : 0 }}
+            aria-hidden="true"
           >
-            <h1>
-              {slide.title}
-              <br />
-              <em>{slide.accent}</em>
-            </h1>
-            <p className="oc-hero-description">
-              {slide.descriptionBefore}
-              <strong>{slide.descriptionStrong}</strong>
-              {slide.descriptionAfter}
-            </p>
+            <Image
+              src={`${ASSET_BASE}/${item.backgroundImage}`}
+              alt=""
+              fill
+              priority={index === 0}
+              loading={index === 0 ? undefined : "lazy"}
+              sizes="100vw"
+              className="oc-hero-background"
+            />
           </motion.div>
-        </AnimatePresence>
-        <div className="oc-hero-buttons">
-          <a href={CONTACT_ROUTE} className="oc-button oc-button-amber oc-button-large">
-            Get a Free Estimate
-            <Icon name="arrow" />
-          </a>
-          <a
-            href="tel:+18018642045"
-            className="oc-button oc-button-ghost oc-button-large"
-          >
-            {PHONE_NUMBER}
-          </a>
-        </div>
-        <div className="oc-hero-controls">
-          <button
-            type="button"
-            className="oc-hero-arrow is-previous"
-            aria-label="Previous hero slide"
-            onClick={showPreviousSlide}
-          >
-            <Icon name="arrow" />
-          </button>
-          <div
-            className="oc-hero-dots"
-            role="tablist"
-            aria-label="Hero highlights"
-          >
-            {heroSlides.map((item, index) => (
-              <button
-                key={item.label}
-                type="button"
-                role="tab"
-                className={index === activeSlide ? "is-active" : ""}
-                aria-label={item.label}
-                aria-selected={index === activeSlide}
-                aria-controls="hero-slide-panel"
-                onClick={() => showSlide(index)}
-              />
-            ))}
+        );
+      })}
+      <div className="oc-hero-glow oc-cool-glow" />
+      <div className="oc-hero-glow oc-warm-glow" />
+      <div className="oc-hero-center">
+        <div className="oc-hero-card">
+          <div className="oc-mobile-logo">
+            <Logo mobile />
           </div>
-          <button
-            type="button"
-            className="oc-hero-arrow is-next"
-            aria-label="Next hero slide"
-            onClick={showNextSlide}
-          >
-            <Icon name="arrow" />
-          </button>
+          <div className="oc-emergency">
+            <span />
+            24/7 Emergency Service · Brigham City, UT
+          </div>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={slide.label}
+              id="hero-slide-panel"
+              className="oc-hero-slide"
+              role="tabpanel"
+              aria-label={slide.label}
+              initial={{ opacity: 0, x: reduceMotion ? 0 : slideDirection * 42 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: reduceMotion ? 0 : slideDirection * -42 }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }
+              }
+            >
+              <h1>
+                {slide.title}
+                <br />
+                <em>{slide.accent}</em>
+              </h1>
+              <p className="oc-hero-description">
+                {slide.descriptionBefore}
+                <strong>{slide.descriptionStrong}</strong>
+                {slide.descriptionAfter}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+          <div className="oc-hero-buttons">
+            <Link
+              href={CONTACT_ROUTE}
+              className="oc-button oc-button-amber oc-button-large"
+            >
+              Get a Free Estimate
+              <Icon name="arrow" />
+            </Link>
+            <a
+              href="tel:+18018642045"
+              className="oc-button oc-button-ghost oc-button-large"
+            >
+              {PHONE_NUMBER}
+            </a>
+          </div>
+          <div className="oc-hero-controls">
+            <button
+              type="button"
+              className="oc-hero-arrow is-previous"
+              aria-label="Previous hero slide"
+              onClick={showPreviousSlide}
+            >
+              <Icon name="arrow" />
+            </button>
+            <div
+              className="oc-hero-dots"
+              aria-label="Hero highlights"
+            >
+              {heroSlides.map((item, index) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  className={index === activeSlide ? "is-active" : ""}
+                  aria-label={item.label}
+                  aria-current={index === activeSlide ? "true" : undefined}
+                  onClick={() => showSlide(index)}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              className="oc-hero-motion-toggle"
+              aria-pressed={motionPaused}
+              onClick={() => setMotionPaused((paused) => !paused)}
+            >
+              {motionPaused ? "Resume motion" : "Pause motion"}
+            </button>
+            <button
+              type="button"
+              className="oc-hero-arrow is-next"
+              aria-label="Next hero slide"
+              onClick={showNextSlide}
+            >
+              <Icon name="arrow" />
+            </button>
+          </div>
         </div>
       </div>
       <div className="oc-season-wrap">
@@ -182,12 +228,12 @@ export function HeroSection() {
           className="oc-equipment-track"
           data-testid="equipment-marquee"
           animate={
-            reduceMotion
+            automaticMotionPaused
               ? { x: 0 }
               : { x: ["0%", "calc(-50% - (var(--equipment-gap) / 2))"] }
           }
           transition={
-            reduceMotion
+            automaticMotionPaused
               ? { duration: 0 }
               : { duration: 28, ease: "linear", repeat: Infinity }
           }

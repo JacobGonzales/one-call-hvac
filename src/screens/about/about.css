@@ -114,12 +114,27 @@
 .oca-value-icon svg { width: 22px; }
 .oca-values h3 { margin-bottom: 8px; font-size: 20px; }
 .oca-values p { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.oca-fact-sheet { background: var(--ink); color: var(--paper); }
+.oca-fact-sheet .oca-section-head h2 { color: var(--paper); }
+.oca-fact-sheet .oca-section-head > p { color: rgba(248,250,252,.72); }
+.oca-fact-sheet .oca-eyebrow { color: var(--cyan); }
+.oca-fact-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.oca-fact-grid > div { min-width: 0; padding: 24px 26px; border: 1px solid rgba(91,205,240,.22); border-radius: 8px; background: rgba(255,255,255,.04); }
+.oca-fact-grid dt { margin-bottom: 9px; color: var(--cyan); font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+.oca-fact-grid dd { overflow-wrap: anywhere; color: var(--paper); font-size: 17px; font-weight: 700; line-height: 1.45; }
+.oca-fact-grid a { text-decoration: underline; text-underline-offset: 3px; }
+.oca-fact-footer { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 28px; margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); }
+.oca-fact-footer p { max-width: 720px; color: rgba(248,250,252,.62); font-size: 12px; line-height: 1.65; }
+.oca-fact-footer time { color: var(--paper); font-weight: 700; }
+.oca-fact-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 18px; }
+.oca-fact-footer nav a { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-decoration: underline; text-transform: uppercase; text-underline-offset: 4px; }
 .oca-areas { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
 .oca-areas article { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border: 1px solid rgba(15,23,42,.16); border-radius: 6px; background: var(--paper); }
 .oca-areas svg { width: 18px; color: var(--blue); }
 .oca-areas strong, .oca-areas span { display: block; }
 .oca-areas strong { font-size: 13px; line-height: 1.2; }
 .oca-areas span { margin-top: 3px; color: var(--muted); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; }
+.oca-service-area-link { display: flex; width: fit-content; margin: 28px auto 0; }
 .oca-cta { position: relative; padding: 86px 0; border-top: 4px solid transparent; border-image: linear-gradient(90deg,var(--amber),var(--cyan),var(--blue)) 1; background-color: var(--ink); color: var(--paper); }
 .oca-cta-inner { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px; }
 .oca-cta h2 { font-size: clamp(36px,5vw,60px); }
@@ -142,15 +157,11 @@
 .oca-footer-bottom { padding: 22px 0; border-top: 1px solid rgba(255,255,255,.08); color: rgba(255,255,255,.4); font-size: 11px; letter-spacing: 1px; }
 .oca-credit { padding: 12px 16px; text-align: center; font-size: 12px; opacity: .62; }
 .oca-credit a { text-decoration: underline; }
-.oca-mobile-sticky { position: fixed; inset: auto 0 0; z-index: 150; display: none; gap: 10px; padding: 10px 12px; border-top: 2px solid var(--blue); background: var(--ink); box-shadow: 0 -8px 28px rgba(0,0,0,.5); transform: translateY(110%); transition: transform .25s; }
-.oca-mobile-sticky.is-visible { transform: translateY(0); }
-.oca-mobile-sticky a { display: flex; flex: 1; align-items: center; justify-content: center; gap: 8px; padding: 13px 10px; border-radius: 4px; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
-.oca-mobile-sticky svg { width: 16px; }
-.oca-mobile-call { background: var(--amber); color: var(--ink); }
-.oca-mobile-quote { background: var(--blue); color: white; }
 @media (max-width: 1080px) {
   .oca-manifesto-body { grid-template-columns: 1fr; gap: 22px; }
   .oca-values { grid-template-columns: 1fr 1fr; }
+  .oca-fact-footer { grid-template-columns: 1fr; align-items: start; }
+  .oca-fact-footer nav { justify-content: flex-start; }
   .oca-areas { grid-template-columns: 1fr 1fr; }
   .oca-cta-inner { grid-template-columns: 1fr; gap: 24px; }
   .oca-footer-grid { grid-template-columns: 1fr 1fr; }
@@ -196,6 +207,13 @@
   .oca-value-icon svg { width: 18px; }
   .oca-values h3 { font-size: 16px; }
   .oca-values p { font-size: 12.5px; line-height: 1.55; }
+  .oca-fact-grid { grid-template-columns: 1fr; gap: 8px; }
+  .oca-fact-grid > div { padding: 17px 18px; }
+  .oca-fact-grid dt { margin-bottom: 6px; font-size: 9px; letter-spacing: 1.5px; }
+  .oca-fact-grid dd { font-size: 14px; }
+  .oca-fact-footer { gap: 16px; margin-top: 18px; padding-top: 16px; }
+  .oca-fact-footer p { font-size: 11px; }
+  .oca-fact-footer nav { display: grid; gap: 8px; }
   .oca-areas { grid-template-columns: 1fr 1fr; gap: 6px; }
   .oca-areas article { gap: 8px; padding: 12px 14px; }
   .oca-areas svg { width: 13px; }
@@ -217,6 +235,4 @@
   .oca-footer-contact { margin-bottom: 8px; font-size: 12px; }
   .oca-footer-seo { font-size: 12px; line-height: 1.7; }
   .oca-footer-bottom { text-align: center; font-size: 10px; }
-  .oca-mobile-sticky { display: flex; }
-  .one-call-about { padding-bottom: 64px; }
 }

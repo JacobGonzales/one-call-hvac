@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 
+import { PAGE_METADATA } from "@/config/page-metadata";
 import { createPageMetadata } from "@/lib/metadata";
-import PlaceholderPage from "@/screens/PlaceholderPage";
-import "@/screens/placeholder/placeholder.css";
+import EmergencyPage from "@/screens/EmergencyPage";
+import "@/screens/emergency/emergency.css";
 import "@/screens/services/services.css";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "24/7 Emergency HVAC | One Call Heating & Air",
-  description:
-    "Call One Call Heating & Air for 24/7 emergency heating and cooling help across northern Utah.",
-  path: "/emergency",
-});
+export const metadata: Metadata = createPageMetadata(PAGE_METADATA.emergency);
 
 export default function Page() {
-  return <PlaceholderPage pathname="/emergency" />;
+  return <EmergencyPage />;
 }

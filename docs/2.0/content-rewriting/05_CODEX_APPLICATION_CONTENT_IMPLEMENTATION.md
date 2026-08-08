@@ -36,7 +36,7 @@ Do not implement when:
 - the route status is not `approved`
 - the approved publish-ready content is missing
 - the current source fingerprint no longer matches the approved review
-- `Needs Codex Review` contains an unresolved item
+- Writer Notes contains an unresolved concern or approval need
 - required owner confirmation is missing
 
 ## Non-Negotiable Source-Of-Truth Boundary
@@ -198,9 +198,11 @@ Confirm:
 
 - all recognized `+required phrase+` markers are already removed
 - legitimate non-marker plus signs remain unchanged
-- no workflow headings, tables, notes, recommendations, or review commentary are included in public copy
+- no workflow headings, Keyword Check table, Meta Description block, Writer Notes, or review commentary are included in public body copy
 - the rewrite maps completely to existing application fields and sections
 - approved headings, lists, FAQs, calls to action, and link labels retain their intended structure
+
+Implement an approved meta description separately in the repository's existing metadata source. Never change the meta title during this workflow.
 
 Do not paste the complete Markdown review artifact into a TSX component.
 

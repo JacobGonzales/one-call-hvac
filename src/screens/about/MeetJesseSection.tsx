@@ -14,7 +14,7 @@ export function MeetJesseSection() {
           <h2>Meet <em>Jesse.</em></h2>
           <p>
             Founder, lead tech, and the voice on the phone when you call. The
-            name on the truck — and the answer when something&apos;s wrong with
+            name on the truck — and the answer when something goes wrong with
             the system.
           </p>
         </div>
@@ -23,13 +23,12 @@ export function MeetJesseSection() {
           <h3>Jesse</h3>
           <div className="oca-owner-role">Owner · Install Lead · 24/7 Service</div>
           <p>
-            Founded One Call Heating & Air with the idea that northern Utah —
-            Salt Lake to the Idaho border — deserved an HVAC shop that answered
-            its own phone. Picks up calls personally — including 11pm in January
-            when the furnace dies. On-site for every install, every diagnostic,
-            every commissioning. No call center, no dispatcher, no &quot;let me
-            transfer you.&quot; Just one number, one accountable answer, every
-            time.
+            Founded One Call Heating & Air because northern Utah — Salt Lake to
+            the Idaho border — deserved an HVAC shop that answered its own
+            phone. Picks up calls personally, including at 11 pm in January when
+            the furnace dies. On-site for every install, every diagnostic, every
+            commissioning. No call center, no dispatcher, no &quot;let me
+            transfer you.&quot; One number, one accountable answer, every time.
           </p>
           <div className="oca-owner-contact">
             <a href="tel:+18018642045"><Icon name="phone" />{PHONE} · 24/7</a>

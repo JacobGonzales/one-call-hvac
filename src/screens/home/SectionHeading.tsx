@@ -1,11 +1,13 @@
 
 export function SectionHeading({
+  id,
   eyebrow,
   lineOne,
   lineTwo,
   description,
   centered = false,
 }: {
+  id?: string;
   eyebrow: string;
   lineOne: string;
   lineTwo?: string;
@@ -15,7 +17,7 @@ export function SectionHeading({
   return (
     <div className={`oc-section-heading${centered ? " oc-centered" : ""}`}>
       <div className="oc-eyebrow">{eyebrow}</div>
-      <h2>
+      <h2 id={id}>
         {lineOne}
         {lineTwo ? (
           <>

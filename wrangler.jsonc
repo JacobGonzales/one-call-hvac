@@ -11,6 +11,10 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "vars": {
+    "RESEND_FROM_EMAIL": "One Call Heating & Air <quotes@utahonecall.com>",
+    "RESEND_TO_EMAIL": "brownzowl4626@gmail.com"
+  },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",

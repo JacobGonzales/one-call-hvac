@@ -51,7 +51,7 @@ The workflow separates five stages:
 
 1. Codex generates paired source and blank rewrite files for every page.
 2. Codex prepares each page's phrase and information requirements.
-3. InHouse rewrites the page in its preferred voice and places required phrases naturally.
+3. InHouse receives a short writer brief and rewrites the page in a useful, natural voice.
 4. Codex reviews and approves the publish-ready result.
 5. Codex places the approved content into the application's existing runtime source and validates it.
 
@@ -69,12 +69,13 @@ Required phrases use paired plus signs, such as `+sewer camera inspection+`. Do 
    - Compares related routes and creates the Page Uniqueness Brief.
    - Assigns target and maximum phrase counts.
    - Records the distinct information each section must preserve.
-   - Finalizes the source package sent to InHouse.
+   - Reduces internal evidence to a short Simple InHouse Brief.
+   - Finalizes the narrow source package sent to InHouse.
 
 3. [`03_INHOUSE_AI_REWRITE_HANDOFF.md`](./03_INHOUSE_AI_REWRITE_HANDOFF.md)
    - Contains the short prompt given to InHouse.
-   - Allows InHouse to rewrite freely and place phrases wherever they fit naturally.
-   - Defines the difference between removing repeated wording and deleting information.
+   - Gives InHouse freedom to improve, shorten, reorder, and combine copy.
+   - Requires only four outputs: Rewritten Page, Meta Description, Keyword Check, and Writer Notes.
 
 4. [`04_CODEX_POST_REWRITE_REVIEW.md`](./04_CODEX_POST_REWRITE_REVIEW.md)
    - Verifies required phrase counts.
@@ -174,7 +175,7 @@ Uniqueness means distinct reader value and page-specific information. It does no
 1. Finish the entire v2 suite.
 2. Generate paired source and blank rewrite files for all pages.
 3. Run the preparation instructions for one page.
-4. Give InHouse only the short rewrite prompt, phrase table, section-preservation table, Page Uniqueness Brief, and marked source content.
+4. Give InHouse only the short rewrite prompt, Simple InHouse Brief, narrow Metadata section, and marked Source Content.
 5. Save the returned rewrite in that page's `02_REWRITTEN_CONTENT.md`.
 6. Run the Codex post-rewrite review.
 7. Request a focused correction when phrase coverage or information coverage is incomplete.
@@ -186,4 +187,4 @@ Uniqueness means distinct reader value and page-specific information. It does no
 
 ## Key Principle
 
-Codex controls requirements, cross-page uniqueness evidence, application-code ownership, and validation. InHouse controls the human-facing rewrite. Markdown files transfer and audit the work; application code remains the runtime source of truth.
+Codex controls requirements, cross-page uniqueness evidence, application-code ownership, and validation. InHouse sees a simple writer-facing brief and controls the human-facing rewrite. Markdown files transfer and audit the work; application code remains the runtime source of truth.

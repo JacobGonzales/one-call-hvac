@@ -39,7 +39,7 @@ Collect:
 - current visible page copy
 - headings, lists, FAQs, calls to action, and important link labels
 
-Do not send metadata, schema, canonical logic, indexability rules, or other technical SEO fields to InHouse.
+Send the source package's narrow Metadata section, but do not send schema, canonical logic, indexability rules, or other technical SEO fields. Mark the current title `DO NOT CHANGE`. The description may be rewritten but must not exceed 160 characters including spaces.
 
 ## Step 2: Create The Required Phrase Table
 
@@ -124,9 +124,29 @@ Rules:
 - Identify content belonging to another route that must not be imported.
 - If the page does not have a defensible distinct job or meaningful unique value, return `human_input_required` instead of inventing a distinction.
 
-## Step 5: Prepare Marked Source Content
+## Step 5: Create The Simple InHouse Brief
 
-Provide the complete human-visible page content. Wrap required phrase occurrences with paired plus signs.
+Condense the internal evidence into one short brief:
+
+```md
+## Simple InHouse Brief
+
+- Reader:
+- Goal:
+- Writing freedom:
+- Must preserve accurately:
+- Locked:
+- Keywords: [short phrase list with target counts and hard maximums]; counts matter, placement does not; omit/report awkward phrases rather than stuffing them.
+- Metadata: Do not change the current title; an optional description must be 160 characters or fewer.
+```
+
+Keep it practical. Include each requested phrase or approved variant, target count, and hard maximum in one compact line so the writer does not need the internal phrase table. State explicitly that the count matters but the original placement does not. Do not copy audit tables, route comparisons, technical SEO explanations, fingerprints, source paths, or implementation notes into the brief. The brief should tell a writer what makes the page useful without dictating every sentence or preserving every current paragraph.
+
+The InHouse transfer consists only of the prompt in step 03, this Simple InHouse Brief, the narrow Metadata section, and the marked Source Content. Codex retains the Page Uniqueness Brief, phrase tables, Section Preservation Inventory, and other audit evidence for post-rewrite review.
+
+## Step 6: Prepare Marked Source Content
+
+Provide the complete human-visible page content. This includes quick answers, every FAQ question and answer, inactive carousel or tab copy, and content revealed by accordions or optional disclosures. Reconcile the initial rendered state with route-owned data and component sources before declaring the package complete. Wrap required phrase occurrences with paired plus signs.
 
 Example:
 
@@ -142,9 +162,9 @@ Marker rules:
 - A single ordinary plus sign and a Markdown `+ ` list item are not markers.
 - InHouse may move the marked phrase anywhere in the rewritten page.
 
-Preserve section boundaries so InHouse can see the intended coverage. Do not include code, component names, technical metadata, or implementation details unless they are visible page copy.
+Preserve section boundaries so InHouse can see the intended coverage. Mark customer-authored reviews and operational form controls as locked/verbatim rather than omitting them or granting rewrite permission. Do not include code, component names, technical metadata, or implementation details unless they are visible page copy.
 
-## Step 6: Verify The Paired Files
+## Step 7: Verify The Paired Files
 
 For each route, confirm both files already exist:
 
@@ -173,9 +193,14 @@ Recompute the normalized visible-content SHA-256 and compare it with both paired
 - unique information, strengthening opportunities, reducible overlap, and do-not-import boundaries are complete
 - uniqueness describes meaningful reader value rather than superficial paraphrasing
 - genuinely repeated wording is distinguished from unique information
+- the Simple InHouse Brief is short, reader-focused, and free of audit language
+- every requested keyword in the Simple InHouse Brief has a target and hard maximum, with placement explicitly left flexible
+- InHouse will receive only the prompt, Simple InHouse Brief, narrow Metadata section, and Source Content
 - the content contains no rewrite-only parentheses or asterisks
 - `02_REWRITTEN_CONTENT.md` exists and its rewrite body is blank
+- the rewrite template contains only Rewritten Page, Meta Description, Keyword Check, and Writer Notes output sections
+- the Keyword Check repeats each requested phrase's target and maximum and leaves final placement unrestricted
 - source generation time, commit reference, and content fingerprint are present
 - the current source fingerprint matches both paired files
 - `REWRITE_STATUS.csv` is updated to `prepared`
-- InHouse will receive no unnecessary v2 or technical SEO explanation
+- InHouse will receive no unnecessary v2, cross-route, or technical SEO explanation

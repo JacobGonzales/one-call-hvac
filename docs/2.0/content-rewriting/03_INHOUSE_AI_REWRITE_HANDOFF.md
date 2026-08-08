@@ -2,180 +2,154 @@
 
 ## Purpose
 
-This is the only rewriting instruction InHouse needs. Give InHouse this prompt followed by one prepared page package.
-
-Do not send the rest of the v2 suite.
-
-The text inside the following prompt block is the platform.inhouse execution prompt. The surrounding document is for Codex only.
+Give InHouse a concrete editorial assignment, a short page brief, and the complete current page copy. InHouse writes the page; Codex retains audits, fingerprints, cross-route comparisons, implementation details, and final verification.
 
 ## Codex Transfer Rules
 
 Before sending:
 
-1. Read `docs/2.0/V2_SUITE_SHARED_EXECUTION_CONTRACT.md`, the v2 suite ledger, and the content-rewriting README.
+1. Read the shared execution contract, content-rewriting README, and suite ledger.
 2. Give the user the required pre-execution rundown before changing transfer or status files.
-3. Confirm the route status is `prepared`.
-4. Confirm the current source fingerprint matches the paired files.
-5. Send only the prompt block and that page's prepared source package.
-6. Update the route to `sent_to_inhouse` and record `inhouse_sent_at`.
-7. Update the v2 suite ledger and cumulative content-rewriting report, implementation summary, and human TODO.
+3. Confirm the route status is `prepared` and the source fingerprint is current.
+4. Confirm all route-owned content states are present, including FAQ answers, quick answers, disclosures, tabs, and carousel slides.
+5. Confirm the Simple InHouse Brief lists every requested keyword or approved variant with a target count and hard maximum.
+6. Send only the prompt below, the route's Simple InHouse Brief, narrow Metadata section, and Source Content.
+7. Do not send the Page Uniqueness Brief, preservation tables, keyword-source analysis, Search Console notes, fingerprints, paths, or implementation reports.
+8. Update the route to `sent_to_inhouse`, record `inhouse_sent_at`, and update the suite ledger plus cumulative content-rewriting report, summary, and TODO.
 
 After receiving:
 
-1. Place the complete response into that page's `02_REWRITTEN_CONTENT.md`.
+1. Place the complete response in that route's `02_REWRITTEN_CONTENT.md`.
 2. Preserve the expected source fingerprint.
-3. Update the route to `rewrite_received`, record `rewrite_received_at`, and then set `codex_review_required`.
-4. Do not edit live page content during this handoff.
+3. Update the route to `rewrite_received`, record `rewrite_received_at`, and set `codex_review_required`.
+4. Update the suite ledger and cumulative content-rewriting outputs.
+5. Do not change live application content during this handoff.
 
 ## Prompt To Give InHouse
 
 ```text
-Rewrite the supplied page using your natural writing style and tone.
+ONE CALL HEATING & AIR PAGE REWRITE INSTRUCTIONS
 
-Make it clear, approachable, polished, useful, and pleasant for people to read. You may rewrite sentences, reorganize paragraphs, improve headings, and strengthen the presentation. You may improve or recommend content involving services, facts, prices, guarantees, locations, offers, and claims when it helps the page.
+I am rewriting website pages for One Call Heating & Air, an owner-operated HVAC company serving northern Utah. I will provide one page at a time with a short page brief, metadata, keyword targets, protected content, and the complete current copy.
 
-PRIORITY ORDER
+For each page, produce a complete rewrite that is useful to a homeowner, sounds like a real local HVAC company, and gives the reader a clear next step.
 
-When instructions compete, follow this order:
+WHAT THE REWRITE NEEDS TO DO
 
-1. Preserve every section that is not explicitly marked mergeable or removable.
-2. Preserve every distinct information point in the Section Preservation Inventory.
-3. Preserve and strengthen the meaningful page-specific value in the Page Uniqueness Brief.
-4. Use every required phrase within its target range without exceeding its maximum.
-5. Improve readability, organization, tone, and persuasive value.
+Remove repetition. Do not let several sections repeat the same promises about honesty, local service, fast help, or owner accountability. Give each section a distinct job and make each one teach the reader something new.
 
-REQUIRED PHRASES
+Add real substance. Use the verified facts in the supplied page to give homeowners concrete information they can use. Depending on the page, that can include:
 
-Required phrases are identified with paired plus signs, for example +sewer camera inspection+.
+- how to choose between repair, replacement, a tune-up, or a maintenance plan
+- what happens when the customer calls
+- what the technician checks or explains during the visit
+- steps in the service or estimate process
+- warning signs, practical questions, or decision factors
+- side-by-side distinctions between service options
+- realistic homeowner situations grounded in the supplied facts
 
-Use every phrase in the Required Phrases table within its target range. Do not exceed its maximum. You may place each phrase wherever it fits naturally; its current location and surrounding wording do not need to stay the same.
+Do not pad the page with generic HVAC advice. If a heading promises to answer a question, the section must answer it directly.
 
-Wrap every required phrase occurrence in the rewritten page with one plus sign immediately before and after the exact phrase. Keep the phrase's spelling and word order unchanged inside the markers. The plus signs help Codex review the draft and will be removed later.
+Make the service experience concrete. Prefer language such as “You call, Jesse answers, we diagnose the system, explain the options, and you decide” over vague statements about guidance, quality, passion, or customer care.
 
-A plus-sign pair is a phrase marker only when the text inside it exactly and case-sensitively matches a phrase or approved variant in the Required Phrases table. Do not treat +1, C++, mathematical plus signs, or Markdown list markers as required phrases.
+Keep the page focused on its assigned job. Do not turn every page into a general company overview. Preserve the intended reader, decision, and next action in the Simple InHouse Brief.
 
-Do not use parentheses, asterisks, bold text, or other symbols as required-phrase markers. Do not force a phrase into an awkward sentence or cluster repeated phrases together merely to meet a count. If a target cannot be met naturally, preserve the best natural draft and report the conflict under Needs Codex Review.
+Preserve useful coverage, not weak wording. Keep the important facts, distinctions, qualifications, questions, answers, and calls to action. You may rewrite headings, reorganize paragraphs, combine repetitive marketing passages, shorten filler, and replace weak explanations. Keep all structural and interactive content identified in the source, including complete FAQ answers, quick answers, disclosures, and carousel states.
 
-CONTENT AND SECTION PRESERVATION
+PROTECTED CONTENT AND ACCURACY
 
-Preserve every section's reader purpose and every distinct information point listed in the Section Preservation Inventory.
+- Do not invent or expand services, prices, discounts, guarantees, credentials, response times, locations, equipment support, tax incentives, rebates, warranties, or business commitments.
+- Keep phone numbers, email addresses, link destinations, prices, geographic facts, safety instructions, offer terms, and verified service details accurate.
+- Content marked [LOCKED] must remain unchanged. This includes customer-authored reviews, form labels, helper text, consent language, disclosures, and operational UI.
+- Do not change the route or suggest a new page.
+- If a supplied claim seems unclear or risky, retain the most accurate source wording and report it briefly in Writer Notes.
 
-You may remove or consolidate repeated wording. However, similar wording does not automatically mean the information is redundant. Do not remove a section, fact, service detail, benefit, qualification, limitation, example, reader question, or call to action merely because another section discusses a related topic.
+KEYWORDS: COUNT, NOT PLACEMENT
 
-Do not remove or merge an entire section unless the Section Preservation Inventory explicitly says that section may be merged or removed. If that field is blank or unclear, preserve the section.
+The Simple InHouse Brief lists each requested phrase or approved variant with a target count and hard maximum.
 
-When two passages truly communicate the same information, you may express that information once more clearly within the allowed section boundaries. When passages answer different reader questions or contain different details, preserve both.
+- Meet the target count naturally whenever possible.
+- A target of 1 means use the phrase once. A target of 1–2 means one or two uses are acceptable.
+- Never exceed the hard maximum.
+- The target controls how many times the phrase appears, not where it appears.
+- Move a phrase to any heading, paragraph, answer, or callout where it reads naturally. It does not need to remain in its original source location.
+- Use only the exact requested phrase or an approved variant supplied in the brief.
+- Distribute repeated phrases instead of clustering them.
+- Wrap every use in paired plus signs, such as +air conditioning repair+, so Codex can verify the final count.
+- If meeting a target would make the copy awkward or misleading, use the best natural count and explain the shortfall in Writer Notes. Do not stuff the phrase.
 
-Use the Required Phrases table, Section Preservation Inventory, and Page Uniqueness Brief as requirements, not as text that should appear on the public page.
+METADATA
 
-PAGE UNIQUENESS
+- The supplied meta title is marked DO NOT CHANGE. Do not rewrite it or suggest another title.
+- You may rewrite the meta description when you can make it more useful and accurate.
+- A rewritten meta description must be no longer than 160 characters, including spaces.
+- If the current description is already stronger, return “Unchanged.”
 
-Use the Page Uniqueness Brief as page-specific context distilled from the wider website.
+TONE
 
-Preserve every item under Unique Information That Must Survive. Emphasize or develop the source-backed items under Unique Angles To Strengthen when doing so improves the page.
+Direct, confident, local, practical, and easy to understand. Zero jargon, zero canned SEO language, zero exaggerated sales pressure, and zero “we are passionate about comfort” filler.
 
-You may shorten Generic Overlap To Reduce, but do not remove distinct information or a section's reader purpose. Do not import topics, claims, examples, or details listed under Do Not Import.
-
-Maintain the Page's Exclusive Job and its meaningful differences from the Closest Related Pages. Create differentiation through useful page-specific information, examples, explanations, and reader value—not merely through synonyms or superficial rephrasing.
-
-Do not invent uniqueness. If the brief is incomplete, contradictory, or does not provide enough support for a meaningful distinction, preserve the best accurate rewrite and report the problem under Needs Codex Review.
+The voice is: you call, a real local owner answers, the system gets diagnosed, the options are explained, and you decide what happens next.
 
 OUTPUT
 
-Return exactly these sections in this order:
+Return exactly these four sections:
 
 1. Rewritten Page
-   - Include the complete page.
-   - Keep valid paired +required phrase+ markers.
-   - Do not omit unchanged sections.
-2. Required Phrase Counts
-   - Report every required phrase, its target, maximum, and final count.
-3. Consolidation Notes
-   - List every passage consolidated or substantially reorganized.
-   - State which information was preserved.
-   - State "None" when no consolidation occurred.
-4. InHouse Recommendations
-   - List recommended services, facts, prices, guarantees, locations, offers, or claims.
-   - State "None" when there are no recommendations.
-5. Uniqueness Notes
-   - List the unique information preserved.
-   - List the unique angles strengthened.
-   - List generic overlap reduced.
-   - List any possible conflict with a related page.
-6. Needs Codex Review
-   - List any phrase target, section requirement, conflicting instruction, or unclear input you could not satisfy naturally.
-   - State "None" when there are no unresolved items.
+   - Return the complete page, not excerpts or a summary.
+   - Keep useful structural markers such as [H1], [H2], [H3], [LINK], [BUTTON], [QUESTION], [ANSWER], [INTERACTIVE], and [LOCKED].
+   - Keep all valid paired +keyword phrase+ markers.
+2. Meta Description
+   - Return the proposed description or “Unchanged.”
+   - Include the exact character count when changed.
+3. Keyword Check
+   - List every requested phrase or approved variant.
+   - Report its target, maximum, version used, final count, and pass/needs-review status.
+   - A phrase can appear anywhere on the page; judge the count, not its location.
+4. Writer Notes
+   - Include only genuine accuracy concerns, keyword shortfalls, changed claims requiring approval, or useful owner recommendations.
+   - Write “None” when there are no issues.
 
-Do not include an explanation of SEO or the rewriting process inside the rewritten page.
-The returned content will be placed in the page's blank 02_REWRITTEN_CONTENT.md file.
+Do not explain SEO. Do not provide a long change log. Spend the effort on writing a page that is worth reading.
 ```
 
-## Why The Preservation Instruction Matters
-
-Removing repeated wording is useful. Removing distinct information is not.
-
-Acceptable consolidation:
-
-- Two paragraphs both say that grease can contribute to drain buildup.
-- InHouse replaces them with one stronger explanation containing the same meaningful information.
-
-Unacceptable deletion:
-
-- One section explains the warning signs of buildup.
-- Another explains how the service addresses buildup.
-- InHouse deletes the service explanation because both sections mention buildup.
-
-The subjects overlap, but the reader purposes and information are different.
-
-## InHouse Output Format
+## Expected Output
 
 ```md
-# Rewritten Page
+## Rewritten Page
 
-[Complete rewritten content]
+[Complete rewritten page]
 
-## Required Phrase Counts
+## Meta Description
 
-| Required phrase | Target uses | Maximum uses | Final uses |
-|---|---:|---:|---:|
+- Description: Unchanged.
+- Character count: Not applicable.
 
-## Consolidation Notes
+## Keyword Check
 
-- Section or passage:
-  - What changed:
-  - Information preserved:
+| Requested phrase | Target | Maximum | Version used | Final count | Status |
+|---|---:|---:|---|---:|---|
 
-## InHouse Recommendations
+## Writer Notes
 
-- Recommendation:
-  - Where it appears:
-
-## Uniqueness Notes
-
-- Unique information preserved:
-- Unique angle strengthened:
-- Generic overlap reduced:
-- Related-page conflict:
-
-## Needs Codex Review
-
-- Item:
-  - Reason:
+None.
 ```
 
-## Correction Prompt
-
-If the first rewrite misses a requirement, send only a focused correction:
+## Focused Correction Prompt
 
 ```text
-Revise the previous rewrite only as needed to address the items below. Preserve the rest of the approved wording.
+Revise the previous rewrite only where needed to fix the items below. Preserve the rest of the draft.
 
-- [Missing phrase or incorrect count]
-- [Missing information point]
-- [Section purpose that was lost]
-- [Unique page information or exclusive job that was weakened]
-- [Content imported from another route]
-- [Unnatural repetition to correct]
+- [Keyword below target or above maximum]
+- [Awkward keyword use]
+- [Repeated or generic passage]
+- [Missing useful information]
+- [Changed or invented claim]
+- [Locked content changed]
+- [Important action or answer lost]
+- [Meta description over 160 characters]
 
-Return the complete corrected page with paired +required phrase+ markers and all six required output sections. Do not return only the changed fragment.
+Remember: keyword targets control final frequency, not placement. Move a phrase wherever it reads naturally.
+
+Return the complete page again using the same four-section format.
 ```

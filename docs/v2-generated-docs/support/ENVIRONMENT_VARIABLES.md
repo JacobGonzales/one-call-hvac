@@ -2,64 +2,68 @@
 
 ## Summary
 
-The application does not read any repository-defined environment variables. No `.env` files or application-owned `process.env` access was found.
-
-Cloudflare deployment is configured through `wrangler.jsonc`. Wrangler authentication is deployment-only and must never be exposed to the browser bundle.
+The application reads exactly three server-side environment variables, all for Resend-backed quote delivery. No `NEXT_PUBLIC_*`, `VITE_*`, or browser environment reads were found. `.env.example` documents the contract. A local `.env.local` declares all three names; values were intentionally not inspected or recorded.
 
 ## Required Secrets
 
-None found.
-
-| Variable | Required by | Secret | Default or fallback | Evidence |
+| Variable | Required by | Secret | Default or fallback | Source reader |
 |---|---|---|---|---|
-| None | n/a | n/a | n/a | Repository search across `src/`, `scripts/`, and configuration files |
+| `RESEND_API_KEY` | Owner notification and customer confirmation from `POST /api/inquiries` | Yes | No default. If it or either required server setting is missing, the route returns HTTP 503 with a phone fallback | `src/lib/resend-inquiries.ts` |
+
+The user reports that this secret is configured in Cloudflare. Remote secret contents were not inspected during this run.
+
+## Required Server Configuration
+
+| Variable | Required by | Secret classification | Repository/deployment value | Missing-value behavior | Source reader |
+|---|---|---|---|---|---|
+| `RESEND_FROM_EMAIL` | Verified sender identity for both emails | Non-secret public sender identity | Declared in `.env.example` and `wrangler.jsonc` | Resend configuration resolves to unavailable; API returns HTTP 503 | `src/lib/resend-inquiries.ts` |
+| `RESEND_TO_EMAIL` | Business recipient and reply-to for confirmation | Private operational configuration, not an API secret | Declared in `.env.example` and `wrangler.jsonc` | Resend configuration resolves to unavailable; API returns HTTP 503 | `src/lib/resend-inquiries.ts` |
+
+These values are not optional to the current email workflow even though they are non-secret. They must stay server-side and must not use a `NEXT_PUBLIC_` prefix.
 
 ## Recommended Public Configuration
 
-None found. The application does not reference `VITE_*`, `PUBLIC_*`, or `NEXT_PUBLIC_*` variables.
+None found. Public site information is owned by TypeScript constants or deployment configuration rather than browser environment variables.
 
 ## Optional Application Configuration
 
-None found.
+None found. The Resend helper requires all three variables as one complete configuration.
 
-## Deployment-Only Values
+## Deployment-Only Values And Bindings
 
-| Variable | Required by | Secret | Default or fallback | Evidence |
+| Name | Type | Purpose | Application read | Notes |
 |---|---|---|---|---|
-| `CLOUDFLARE_API_TOKEN` | Non-interactive `wrangler deploy` sessions that do not already have Cloudflare authentication | Yes | None; authenticated interactive terminals may use Wrangler login state instead | Wrangler deploy error and `wrangler.jsonc` deployment workflow |
+| `CLOUDFLARE_API_TOKEN` | Secret environment value used by Wrangler conventions | Non-interactive Cloudflare authentication when no approved login/session is available | No | Not declared in source; keep only in an approved CI/secret store |
+| `ASSETS` | Cloudflare Worker binding | Serves `.open-next/assets` | No direct repository read | Declared by `wrangler.jsonc`; consumed by the OpenNext Worker package |
+| `WORKER_SELF_REFERENCE` | Cloudflare service binding | OpenNext self-reference support | No direct application read | Declared by `wrangler.jsonc` for service `one-call-hvac` |
 
-Cloudflare Builds may provide deployment authorization through the connected project rather than a repository variable. No token value belongs in source, generated docs, or a `NEXT_PUBLIC_*` variable.
+Cloudflare Builds may authenticate through the connected project instead of a repository variable. No deployment credential belongs in source, generated docs, or a browser-exposed variable.
 
-## Hardcoded Public Configuration That Is Not An Environment Variable
+## Hardcoded Public Configuration
 
-These values are visible in browser-delivered source or HTML and should not be treated as secrets:
-
-| Configuration | Current owner | Purpose | Notes |
+| Configuration | Current owner | Purpose | Maintenance note |
 |---|---|---|---|
-| Formspree form action | `src/screens/contact/ContactDetailsSection.tsx` | External contact-form submission | Public browser endpoint; production account ownership and delivery cannot be verified from the repository |
-| Phone, telephone URI, and email | `src/config/site.ts` plus some direct literals in page components | Public contact actions | Partly centralized; direct literals remain |
-| Public asset base | `src/config/site.ts` | Root-relative image and SVG paths | Defaults are encoded as a constant, not environment-driven |
-| Google Fonts stylesheet URLs | Route CSS files | Loads Archivo Black and Inter | External browser dependency; not configurable through env |
-| Canonical public site URL | `src/config/site.ts` | `https://utahonecall.com` | Application constant used by route canonical metadata |
-| Cloudflare custom domain | `wrangler.jsonc` | Maps the Worker to `utahonecall.com` | Deployment configuration, not an environment variable |
-
-## Framework Defaults
-
-Next.js exposes framework environment behavior, but the application does not currently read it. The presence of transitive `dotenv` packages does not establish an application environment-variable contract.
+| Canonical site URL `https://utahonecall.com` | `src/config/site.ts` | Next.js `metadataBase` and absolute canonical resolution | Keep synchronized with the Cloudflare custom domain |
+| Public route paths | `src/config/site.ts` and `src/app/` | Navigation and route identity | Keep route files, constants, metadata, and generated inventory synchronized |
+| Phone, telephone URI, and email | `src/config/site.ts` plus remaining direct literals | Public contact actions | Some duplication remains; values are intentionally browser-visible |
+| Public asset base | `src/config/site.ts` | Root-relative image/SVG references | Not environment-driven |
+| Cloudflare custom domain | `wrangler.jsonc` | Worker route for `utahonecall.com` | Deployment configuration, not app env |
+| Google Maps and review URLs | `src/screens/home/ServiceAreaSection.tsx`, `src/lib/google-reviews.ts` | Keyless map embed and outbound review links | Public third-party URLs |
+| Google Fonts URLs | route CSS files | Archivo Black and Inter | External browser dependency |
 
 ## Security And Maintenance Rules
 
-- Do not add secret values to this document or any generated report.
-- If a future integration requires credentials, read them only in an approved server-side or deployment boundary. `NEXT_PUBLIC_*` values are embedded in browser output and cannot hold secrets.
-- Refresh this inventory whenever environment helpers, deployment configuration, server functions, analytics, a CMS/database, or a different application framework is introduced.
-- Store `CLOUDFLARE_API_TOKEN` only in an approved secret store or local shell environment. Never prefix it with `NEXT_PUBLIC_`.
+- Never add a real API key, Cloudflare token, or secret value to this inventory.
+- Keep `RESEND_API_KEY` in `.env.local` for local development and an encrypted Cloudflare secret for the Worker.
+- Treat `.env.example` values as examples/contracts, not proof that an environment is configured.
+- Treat `wrangler.jsonc` `vars` as deployed defaults only after the relevant Worker has been published.
+- Refresh this inventory whenever application env reads, bindings, analytics, a CMS/database, authentication, or deployment providers change.
 
 ## Inspection Evidence
 
-- `package.json`
-- `next.config.ts`
-- `open-next.config.ts`
-- `src/`
-- `scripts/sync-agents.mjs`
-- repository deployment/environment filename search
-- repository-owned searches for `import.meta.env`, `process.env`, `VITE_`, `NEXT_PUBLIC_`, and related patterns
+- `.env.example` and local variable-name-only inspection of `.env.local`
+- `src/lib/resend-inquiries.ts`
+- `src/app/api/inquiries/route.ts`
+- `src/screens/contact/FreeQuoteForm.tsx`
+- `wrangler.jsonc`, `open-next.config.ts`, `package.json`, `README.md`
+- repository-owned searches for `process.env`, `import.meta.env`, `NEXT_PUBLIC_`, `VITE_`, Resend, Wrangler, and Cloudflare variable patterns

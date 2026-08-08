@@ -1,4 +1,5 @@
 import { Link } from "@/components/Link";
+import { PAGE_BREADCRUMBS } from "@/config/site-navigation";
 import { HOME_ROUTE } from "@/config/site";
 
 export function ServicesHeroSection() {
@@ -6,16 +7,16 @@ export function ServicesHeroSection() {
     <section
       className="ocs-page-hero ocs-airflow"
       data-section="four lanes.one crew."
-      aria-label="Four Lanes.One Crew."
+      aria-labelledby="services-heading"
     >
       <div className="ocs-container ocs-page-hero-inner">
-        <div className="ocs-breadcrumb">
+        <nav className="ocs-breadcrumb" aria-label="Breadcrumb">
           <Link href={HOME_ROUTE}>Home</Link>
-          <span>/</span>
-          Services
-        </div>
+          <span aria-hidden="true">/</span>
+          {PAGE_BREADCRUMBS.services.label}
+        </nav>
         <div className="ocs-page-eyebrow">Services</div>
-        <h1>
+        <h1 id="services-heading">
           Four Lanes.
           <br />
           <em>One Crew.</em>

@@ -6,7 +6,7 @@ export const services = [
     title: "Install",
     icon: "home",
     description:
-      "New furnace, AC, heat pump, or mini-split installs. Right-sized to your home, properly ducted, commissioned to spec — and eligible for federal 25C tax credits where applicable.",
+      "New furnace, AC, heat pump, or mini-split — right-sized to your home, properly ducted, and commissioned to spec. Eligible for federal 25C tax credits where applicable.",
     link: "See Install",
     href: `${SERVICES_ROUTE}#install`,
     featured: true,
@@ -16,7 +16,7 @@ export const services = [
     title: "Repair",
     icon: "wrench",
     description:
-      "System down? We answer 24/7 — diagnose first, quote second, fix third. Honest about what's actually broken vs. what just needs cleaning. No upsell pressure.",
+      "System down? We answer 24/7. Diagnose first, quote second, fix third. If it just needs cleaning, we'll say so — no pressure to replace what still works.",
     link: "See Repair",
     href: `${SERVICES_ROUTE}#repair`,
     featured: false,
@@ -26,7 +26,7 @@ export const services = [
     title: "Service",
     icon: "clock",
     description:
-      "Spring AC tune-up. Fall furnace check. Filter changes, coil cleans, refrigerant top-offs, electrical checks. Catch the small stuff before the small stuff becomes the 11pm phone call.",
+      "Spring AC tune-up. Fall furnace check. Filter changes, coil cleans, refrigerant top-offs, and electrical checks. Catch the small stuff before it becomes the midnight phone call.",
     link: "See Service",
     href: `${SERVICES_ROUTE}#service`,
     featured: false,
@@ -46,27 +46,27 @@ export const services = [
 export const whyCards = [
   {
     number: "01",
-    title: "Owner Answers",
+    title: "You Talk to the Owner",
     description:
-      'Call (801) 864-2045 and you get Jesse — not an offshore phone bank, not a "we\'ll call you back."',
+      'Call (801) 864-2045 and Jesse picks up — not an offshore phone bank, not a "we\'ll call you back." You describe the problem to the person who will diagnose it.',
   },
   {
     number: "02",
-    title: "Diagnose First",
+    title: "The System Gets Tested First",
     description:
-      'We tell you what\'s actually broken before we quote. No "your unit\'s done" without proof — and no upsell pressure.',
+      "We arrive with diagnostic tools and test the system before quoting anything. If it needs a part, we tell you which one and why. No one tells you your unit is done without showing you the proof.",
   },
   {
     number: "03",
-    title: "Real 24/7",
+    title: "The Quote Is the Price",
     description:
-      "When the furnace dies on a 12° January night or the AC quits in July, you get a real tech — fast. Not a 48-hour hold queue.",
+      "Parts, labor, and disposal — itemized in writing. The number we quote is the number you pay. No surprise add-ons after the truck shows up.",
   },
   {
     number: "04",
-    title: "Fair Quotes",
+    title: "24/7 Means Tonight",
     description:
-      "The number we quote is the number you pay. Itemized parts, labor, and disposal — no surprise add-ons after the truck shows up.",
+      "Furnace dies on a 12° January night or AC quits in July — you get a real tech, fast. Not a voicemail. Not a 48-hour hold queue.",
   },
 ] as const;
 
@@ -88,65 +88,41 @@ export const processSteps = [
     number: "02",
     title: "Diagnose",
     description:
-      'Onsite, in person, with the tools to actually test the system. No guessing. No "looks like" diagnoses.',
+      "A tech arrives with the tools to test the system at your home — no guessing. You get a straight answer about what's wrong before any quote.",
   },
   {
     number: "03",
     title: "Quote",
     description:
-      "Itemized, written, fair. You decide before any work starts. Financing options on installs.",
+      "You see every line item and approve the price before work starts. Financing options on installs.",
   },
   {
     number: "04",
     title: "Done",
     description:
-      "Repair on the spot if we have the part — most calls finish in one visit. Walk-through and warranty on every job.",
+      "If we have the part on the truck, the repair happens that visit. Most calls finish in one visit. Walk-through and warranty on every job.",
   },
 ] as const;
 
-export const serviceAreas = [
-  "Brigham City · HQ",
-  "Salt Lake City",
-  "Sandy",
-  "Murray",
-  "West Jordan",
-  "South Jordan",
-  "Cottonwood Heights",
-  "Holladay",
-  "Draper",
-  "Bountiful",
-  "Centerville",
-  "Farmington",
-  "Kaysville",
-  "Layton",
-  "Clearfield",
-  "Syracuse",
-  "Morgan",
-  "Roy",
-  "Riverdale",
-  "South Ogden",
-  "Ogden",
-  "North Ogden",
-  "Pleasant View",
-  "Plain City",
-  "Perry",
-  "Willard",
-  "Mantua",
-  "Corinne",
-  "Tremonton",
-  "Garland",
-  "Honeyville",
-  "Bear River City",
-  "Logan",
-  "North Logan",
-  "Smithfield",
-  "Hyrum",
-  "Providence",
-  "Wellsville",
-  "Richmond",
-  "Garden City",
-  "Randolph",
-] as const;
+export const hvacQuickAnswer = {
+  question: "What HVAC services does One Call provide?",
+  answer:
+    "One Call Heating & Air installs, repairs, tunes up, and maintains furnaces, central air conditioners, heat pumps, and ductless mini-splits across northern Utah.",
+  facts: [
+    {
+      term: "Services",
+      detail: "Installation, repair, seasonal tune-ups, and maintenance plans",
+    },
+    {
+      term: "Equipment",
+      detail: "Furnaces, central AC, heat pumps, and ductless mini-splits",
+    },
+    {
+      term: "Service area",
+      detail: "41 communities across seven northern Utah counties",
+    },
+  ],
+} as const;
 
 export const faqs = [
   {
@@ -162,7 +138,7 @@ export const faqs = [
   {
     question: "Should I replace my old furnace with a heat pump?",
     answer:
-      "For most northern Utah homes — yes, a cold-climate heat pump is a great move. They handle Utah winters down to single digits, qualify for federal tax credits, and lower summer cooling costs. We size it carefully so you don't over-buy or under-buy.",
+      "For most northern Utah homes, a cold-climate heat pump is worth considering. It handles heating and cooling in one unit, works down to single-digit temperatures, and qualifies for federal tax credits up to $2,000. Summer cooling costs typically drop because heat pumps move heat rather than generate it. We size the system to the home so you don't over-buy or under-buy.",
   },
   {
     question: "Do you charge a diagnostic fee?",
@@ -172,7 +148,7 @@ export const faqs = [
   {
     question: "What's a maintenance plan and is it worth it?",
     answer:
-      "Our Gold Membership is $99/year and includes two free seasonal tune-ups, priority scheduling, $0 diagnostic fees, 15% off parts and labor, and a tech who already knows your system.",
+      "Our Gold Membership is $99/year and includes two free seasonal tune-ups, priority scheduling, $0 diagnostic fees, 15% off parts and labor, and a tech who already knows your system. The two tune-ups, $0 diagnostics, and 15% discount all apply for the full year — so any service call during that time costs less than it would without the membership.",
   },
   {
     question: "Do you do mini-splits / ductless?",
@@ -198,15 +174,17 @@ export const equipment = [
 export const heroSlides = [
   {
     label: "Owner-operated HVAC overview",
+    backgroundImage: "hero-technician.jpg",
     title: "One Call.",
     accent: "Done.",
-    descriptionBefore: "Owner-operated HVAC across northern Utah — ",
+    descriptionBefore: "Owner-operated northern Utah HVAC service — ",
     descriptionStrong: "Salt Lake to the Idaho border.",
     descriptionAfter:
-      " Furnace and AC install, 24/7 repair, seasonal service, and maintenance plans across all seven northern counties. No call centers. No runaround. Jesse answers the phone.",
+      " Furnace and AC install, 24/7 repair, seasonal tune-ups, and maintenance plans across all seven northern counties. No call centers. No runaround. Jesse answers the phone.",
   },
   {
     label: "Heating service",
+    backgroundImage: "hero-heating-winter.jpg",
     title: "Heat When",
     accent: "It Counts.",
     descriptionBefore: "Furnace install, replacement, and ",
@@ -216,6 +194,7 @@ export const heroSlides = [
   },
   {
     label: "Cooling service",
+    backgroundImage: "hero-cooling-summer.jpg",
     title: "Cool When",
     accent: "It’s 100°.",
     descriptionBefore:

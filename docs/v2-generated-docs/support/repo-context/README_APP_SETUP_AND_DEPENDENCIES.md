@@ -59,7 +59,7 @@ All three are required for successful inquiry email delivery. The API returns a 
 
 ### Recommended Public Variables
 
-None. The application does not read `NEXT_PUBLIC_*` variables.
+- `NEXT_PUBLIC_GOOGLE_SERVICE_AREA_MAP_ID` selects the public Google My Maps service-area embed. The checked-in fallback and `wrangler.jsonc` use the current One Call map ID.
 
 ### Optional Application Variables
 

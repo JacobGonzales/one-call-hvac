@@ -112,6 +112,20 @@ Each valid submission sends the business notification first, then attempts a
 customer confirmation. If Resend is not configured, the form displays a phone
 fallback instead of losing the request silently.
 
+## Service Area Map
+
+The homepage embeds the public One Call Google My Maps service-area map. Its
+map ID is configured with:
+
+```bash
+NEXT_PUBLIC_GOOGLE_SERVICE_AREA_MAP_ID=1EVCcWbvQk2b4XwJIXnlzK7-TliTsDSU
+```
+
+This is a public Google My Maps identifier, not an API secret. The production
+value is checked into the `vars` block in `wrangler.jsonc`, and the application
+keeps the same public ID as a build-time fallback so the statically rendered
+homepage map also works in clean builds.
+
 ## Google Reviews
 
 The homepage uses a manually maintained review dataset in

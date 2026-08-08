@@ -5,7 +5,7 @@
 | Integration | Direction | Source | Configuration model | Verification status |
 |---|---|---|---|---|
 | Resend | Server outbound email | `src/app/api/inquiries/route.ts`, `src/lib/resend-inquiries.ts` | Server API key plus required sender and recipient settings | Source and mocked tests exist; user reports Cloudflare secret configured; production delivery not exercised in this run |
-| Google Maps | Browser iframe and outbound navigation | `src/screens/home/ServiceAreaSection.tsx`, `src/lib/google-reviews.ts`, `src/components/GoogleReviewsSection.tsx` | Public keyless embed/search URLs | Source verified; no Google API key required |
+| Google Maps | Browser iframe and outbound navigation | `src/config/service-area-map.ts`, `src/screens/home/ServiceAreaSection.tsx`, `src/lib/google-reviews.ts`, `src/components/GoogleReviewsSection.tsx` | Public Google My Maps ID plus keyless embed/search URLs | Source verified; no Google API key required |
 | Manual Google reviews | Repository data rendered in browser | `src/lib/google-reviews.ts`, `src/components/GoogleReviewsSection.tsx` | Static names, ratings, relative dates, and review copy | Tests cover data and carousel behavior; content freshness remains manual |
 | Google Fonts | Browser outbound stylesheet/font requests | Route CSS `@import` statements | Hardcoded public Google Fonts URLs | Source verified; local fallback fonts apply when unavailable |
 | Cloudflare Workers via OpenNext | Build/deploy outbound and public hosting inbound | `open-next.config.ts`, `wrangler.jsonc`, `package.json` | Node-compatible Worker, assets binding, self-reference binding, custom domain | Production currently returns Cloudflare-hosted Next.js responses; exact local working-tree deployment parity is not asserted |

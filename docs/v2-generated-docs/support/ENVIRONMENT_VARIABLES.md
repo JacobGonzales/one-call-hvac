@@ -2,7 +2,7 @@
 
 ## Summary
 
-The application reads exactly three server-side environment variables, all for Resend-backed quote delivery. No `NEXT_PUBLIC_*`, `VITE_*`, or browser environment reads were found. `.env.example` documents the contract. A local `.env.local` declares all three names; values were intentionally not inspected or recorded.
+The application reads three server-side environment variables for Resend-backed quote delivery and one browser-public variable for the Google My Maps service-area embed. `.env.example` documents the contract. Local secret values were intentionally not inspected or recorded.
 
 ## Required Secrets
 
@@ -23,7 +23,9 @@ These values are not optional to the current email workflow even though they are
 
 ## Recommended Public Configuration
 
-None found. Public site information is owned by TypeScript constants or deployment configuration rather than browser environment variables.
+| Variable | Required by | Secret | Default or fallback | Source reader |
+|---|---|---|---|---|
+| `NEXT_PUBLIC_GOOGLE_SERVICE_AREA_MAP_ID` | Homepage service-area Google My Maps iframe | No; Google My Maps IDs are browser-visible | The current public map ID is declared in `.env.example`, `wrangler.jsonc`, and as a clean-build fallback | `src/config/service-area-map.ts` |
 
 ## Optional Application Configuration
 
@@ -48,7 +50,7 @@ Cloudflare Builds may authenticate through the connected project instead of a re
 | Phone, telephone URI, and email | `src/config/site.ts` plus remaining direct literals | Public contact actions | Some duplication remains; values are intentionally browser-visible |
 | Public asset base | `src/config/site.ts` | Root-relative image/SVG references | Not environment-driven |
 | Cloudflare custom domain | `wrangler.jsonc` | Worker route for `utahonecall.com` | Deployment configuration, not app env |
-| Google Maps and review URLs | `src/screens/home/ServiceAreaSection.tsx`, `src/lib/google-reviews.ts` | Keyless map embed and outbound review links | Public third-party URLs |
+| Google Maps and review URLs | `src/config/service-area-map.ts`, `src/screens/home/ServiceAreaSection.tsx`, `src/lib/google-reviews.ts` | Public My Maps ID, keyless map embed, and outbound review links | The map ID is intentionally browser-visible and is not an API key |
 | Google Fonts URLs | route CSS files | Archivo Black and Inter | External browser dependency |
 
 ## Security And Maintenance Rules
